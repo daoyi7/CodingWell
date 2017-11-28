@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="codingwell">
     <nuxt/>
     <!-- <my-footer/> -->
   </div>
