@@ -15,55 +15,27 @@
         </div>
       </header>
     </section>
-    <div class="main">
-      <div class="main_content">
-        <div class="posts_wrap">
-          <ul class="posts">
-            <li class="post">
-              <section class="post_item">
-                <div class="post_user">
-                  <a href="#">
-                    <img src="~assets/img/codingwell.png" alt="cdw">
-                  </a>
-                </div>
-                <div class="post_main">
-                  <h2>A站真的药丸？为什么一个网站可以一炸就三天过去了。。</h2>
-                  <div class="post_info">
-                    <span class="post_node">全球工单系统</span>
-                    <span class="post_username">CodingWell</span>
-                  </div>
-                </div>
-              </section>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- <h1 class="title">
-      USERS
-    </h1>
-    <ul class="users">
-      <li v-for="(user, index) in users" :key="index" class="user">
-        <nuxt-link :to="{ name: 'id', params: { id: index }}">
-          {{ user.name }}
-        </nuxt-link>
-      </li>
-    </ul> -->
+    <cdw-main></cdw-main>
   </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import main from './main'
 
 export default {
   async asyncData () {
-    let { data } = await axios.get('/api/users')
-    return { users: data }
+    let { data } = await axios.get('/api/posts')
+    console.log(data)
+    return { posts: data }
   },
   head () {
     return {
       title: 'CodingWell'
     }
+  },
+  components: {
+    'cdw-main': main
   }
 }
 </script>
@@ -92,31 +64,5 @@ export default {
         padding .3rem .6rem
         background #76d067
         margin-right .8rem
-.main
-  width 100%
-  .main_content
-    width 60%
-    margin 0 auto
-    .posts_wrap
-      width 100%
-      .posts
-        margin 0
-        padding 0
-        list-style none
-        .post
-          .post_item
-            display flex
-            justify-content space-between
-            .post_user
-              flex 0 0 4rem
-              width 4rem
-              height 4rem
-              overflow hidden
-              border-radius .3rem
-              a
-                width 100%
-                height 100%
-                img
-                  width 100%
 
 </style>

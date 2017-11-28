@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const _453836e9 = () => import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
-const _0c15c040 = () => import('..\\pages\\posts\\_id.vue' /* webpackChunkName: "pages/posts-id" */).then(m => m.default || m)
+const _bfc1d91c = () => import('..\\pages\\main.vue' /* webpackChunkName: "pages/main" */).then(m => m.default || m)
 
 
 
@@ -46,9 +46,9 @@ export function createRouter () {
 			name: "index"
 		},
 		{
-			path: "/posts/:id?",
-			component: _0c15c040,
-			name: "posts-id"
+			path: "/main",
+			component: _bfc1d91c,
+			name: "main"
 		}
     ],
     fallback: false
