@@ -1,19 +1,23 @@
 <template>
-  <div class="cdw-register">
-    <div class="cdw-register-bg"></div>
-    <div class="cdw-register-box">
-      <h2>加入 CodingWell</h2>
-      <form class="cdw-register-main" action="/" method="post">
-        <div class="cdw-register-username">
+  <div class="cdw-login">
+    <div class="cdw-login-bg">
+      <nuxt-link to="/">
+        <i class="icon iconfont icon-home"></i>
+      </nuxt-link>
+    </div>
+    <div class="cdw-login-box">
+      <h2>欢迎回来</h2>
+      <form class="cdw-login-main" action="/" method="post">
+        <div class="cdw-login-username">
           <input type="text" name="username" placeholder="用户名">
         </div>
-        <div class="cdw-register-psw">
+        <div class="cdw-login-psw">
           <input type="password" name="password" placeholder="密码">
         </div>
-        <button type="submit" name="button">注册</button>
-        <div class="cdw-go-login">
-          <nuxt-link to="/login">
-            <span>已有账号？立即登录</span>
+        <button type="submit" name="button">登录</button>
+        <div class="cdw-go-register">
+          <nuxt-link to="/register">
+            <span>还没有账号？立即注册</span>
           </nuxt-link>
         </div>
       </form>
@@ -25,14 +29,14 @@
 export default {
   head () {
     return {
-      title: 'CodingWell | 注册'
+      title: 'CodingWell | 登录'
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.cdw-register
+.cdw-login
   position relative
   width 100vw
   height 100vh
@@ -41,7 +45,7 @@ export default {
   display flex
   justify-content center
   align-items center
-  .cdw-register-bg
+  .cdw-login-bg
     position fixed
     top 0
     left 0
@@ -49,7 +53,12 @@ export default {
     height 100%
     background #fff
     opacity 0.3
-  .cdw-register-box
+    a
+      i
+        font-size 5rem
+        color #76d067
+        font-weight 700
+  .cdw-login-box
     position fixed
     z-index 3
     width 25rem
@@ -62,7 +71,7 @@ export default {
       color #76d067
       background #fff
       margin 0
-    .cdw-register-main
+    .cdw-login-main
       padding 2rem 3rem 2rem
       background #fff
       input
@@ -79,7 +88,7 @@ export default {
         background #76d067
         color #fff
         margin-top 1rem
-      .cdw-go-login
+      .cdw-go-register
         padding-top 1rem
         text-align right
         a:hover
