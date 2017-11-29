@@ -3,18 +3,17 @@
   <div class="main_content">
     <div class="posts_wrap">
       <ul class="posts">
-        <li v-for="(post, idx) in posts" :key="idx" class="post">
+        <li v-for="(bbs, idx) in bbses" :key="idx" class="post">
           <section class="post_item">
-            {{post.id}}
             <div class="post_user">
               <a href="#">
-                <img :src="post.member.avatar_mini" :alt="post.member.username">
+                <img :src="bbs.member.avatar_normal" :alt="bbs.member.username">
               </a>
             </div>
             <div class="post_main">
-              <h2>A站真的药丸？为什么一个网站可以一炸就三天过去了。。</h2>
+              <h2>{{bbs.title}}</h2>
               <div class="post_info">
-                <span class="post_username">CodingWell</span>
+                <span class="post_username">{{bbs.member.username}}</span>
               </div>
             </div>
           </section>
@@ -27,6 +26,12 @@
 
 <script>
 export default {
+  props: {
+    bbses: {
+      type: Array,
+      default: []
+    }
+  }
 }
 </script>
 

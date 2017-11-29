@@ -15,7 +15,7 @@
         </div>
       </header>
     </section>
-    <cdw-main></cdw-main>
+    <cdw-main :bbses = "bbses"></cdw-main>
   </section>
 </template>
 
@@ -26,8 +26,7 @@ import main from './main'
 export default {
   async asyncData () {
     let { data } = await axios.get('/api/posts')
-    console.log(data)
-    return { posts: data }
+    return { bbses: data }
   },
   head () {
     return {
@@ -64,5 +63,43 @@ export default {
         padding .3rem .6rem
         background #76d067
         margin-right .8rem
+.main
+  width 100%
+  .main_content
+    width 60%
+    margin 0 auto
+    .posts_wrap
+      width 100%
+      .posts
+        margin 0
+        padding 0
+        list-style none
+        .post
+          .post_item
+            display flex
+            justify-content space-between
+            .post_user
+              flex 0 0 6rem
+              width 6rem
+              height 6rem
+              overflow hidden
+              vertical-align middle
+              display flex
+              justify-content center
+              align-items center
+              a
+                width 4rem
+                height 4rem
+                display block
+                img
+                  width 100%
+                  border-radius .3rem
+            .post_main
+              flex 1
+              vertical-align middle
+              h2
+                padding 0
+                margin 0
+                line-height 4rem
 
 </style>
