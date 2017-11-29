@@ -1,10 +1,6 @@
 <template>
   <div class="cdw-login">
-    <div class="cdw-login-bg">
-      <nuxt-link to="/">
-        <i class="icon iconfont icon-home"></i>
-      </nuxt-link>
-    </div>
+    <div class="cdw-login-bg"></div>
     <div class="cdw-login-box">
       <h2>欢迎回来</h2>
       <form class="cdw-login-main" action="/" method="post">
@@ -15,7 +11,7 @@
           <input type="password" name="password" placeholder="密码">
         </div>
         <button type="submit" name="button">登录</button>
-        <div class="cdw-go-register">
+        <div class="cdw-go-login">
           <nuxt-link to="/register">
             <span>还没有账号？立即注册</span>
           </nuxt-link>
@@ -53,11 +49,6 @@ export default {
     height 100%
     background #fff
     opacity 0.3
-    a
-      i
-        font-size 5rem
-        color #76d067
-        font-weight 700
   .cdw-login-box
     position fixed
     z-index 3
@@ -88,7 +79,7 @@ export default {
         background #76d067
         color #fff
         margin-top 1rem
-      .cdw-go-register
+      .cdw-go-login
         padding-top 1rem
         text-align right
         a:hover

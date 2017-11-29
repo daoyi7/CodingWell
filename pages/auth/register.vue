@@ -1,12 +1,8 @@
 <template>
   <div class="cdw-register">
-    <div class="cdw-login-bg">
-      <nuxt-link to="/">
-        <i class="icon iconfont icon-home"></i>
-      </nuxt-link>
-    </div>
+    <div class="cdw-register-bg"></div>
     <div class="cdw-register-box">
-      <h2>加入 CodingWell</h2>
+      <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
       <form class="cdw-register-main" action="/" method="post">
         <div class="cdw-register-username">
           <input type="text" name="username" placeholder="用户名">
@@ -45,7 +41,7 @@ export default {
   display flex
   justify-content center
   align-items center
-  .cdw-login-bg
+  .cdw-register-bg
     position fixed
     top 0
     left 0
@@ -53,11 +49,6 @@ export default {
     height 100%
     background #fff
     opacity 0.3
-    a
-      i
-        font-size 5rem
-        color #76d067
-        font-weight 700
   .cdw-register-box
     position fixed
     z-index 3
@@ -71,6 +62,21 @@ export default {
       color #76d067
       background #fff
       margin 0
+      a
+        position relative
+        &:after
+          content ''
+          position absolute
+          width 100%
+          height 1px
+          border-bottom 1px solid #76d067
+          left 0
+          bottom -.2rem
+          transform scaleX(0)
+          transition all linear .2s
+        &:hover
+          &:after
+            transform scaleX(1)
     .cdw-register-main
       padding 2rem 3rem 2rem
       background #fff

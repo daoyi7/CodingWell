@@ -306,11 +306,11 @@ const posts = [{
   }
 ]
 
-router.get('/posts', function(req, res, next) {
+router.get('/content', function(req, res, next) {
   res.json(posts)
 })
 
-router.get('/posts/:id', function(req, res, next) {
+router.get('/content/:id', function(req, res, next) {
   const id = parseInt(req.params.id)
   if (id >= 0 && id < posts.length) {
     res.json(posts[id])

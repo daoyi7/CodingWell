@@ -42,7 +42,7 @@ export default {
   async asyncData () {
     let {
       data
-    } = await axios.get('/api/posts')
+    } = await axios.get('/api/content')
     return {
       bbses: data
     }
