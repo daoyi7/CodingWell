@@ -3,14 +3,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'starter',
+    title: 'CodingWell',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/cdw.ico' }
     ]
   },
   /*
@@ -21,8 +21,7 @@ module.exports = {
   ** Add axios globally
   */
   loading: {
-    color: 'blue',
-    height: '5px'
+    color: '#54b743'
   },
   build: {
     vendor: ['axios'],

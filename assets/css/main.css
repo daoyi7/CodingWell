@@ -1,11 +1,14 @@
 html, body
 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
   background-color: #fff;
   color: #000;
   letter-spacing: 0.5px;
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: "Microsoft YaHei", "Source Sans Pro", Arial, sans-serif;
   height: 100vh;
-  margin: 0;
   font-size: 10px;
 }
 
@@ -16,7 +19,45 @@ footer
   border-top: 1px solid #ddd;
 }
 
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-size: 1em;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 a, a:hover, a:focus, a:visited
 {
   color: #000;
+}
+input:focus, input:hover, input:active, button:focus, button:hover, button:active {
+  outline: none;
 }

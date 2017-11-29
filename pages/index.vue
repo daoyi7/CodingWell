@@ -1,7 +1,7 @@
 <template>
 <section class="container">
-  <section class="header">
-    <header class="header_content">
+  <section class="cdw-header">
+    <header class="cdw-header-content">
       <nuxt-link to="/">
         <img src="~assets/img/codingwell.png" alt="CodingWell" class="logo" />
         <svg version="1.1" id="Layer_1" x="0px" y="0px" width="174px" height="24px" viewBox="0 0 348 48" enable-background="new 0 0 348 48" xml:space="preserve">  <image id="image0" width="348" height="48" x="0" y="0"
@@ -20,7 +20,7 @@
         dEVYdGRhdGU6bW9kaWZ5ADIwMTctMTEtMjlUMTE6MzM6MzUrMDg6MDD+cBluAAAAAElFTkSuQmCC" />
         </svg>
       </nuxt-link>
-      <div class="dashboard">
+      <div class="cdw-dashboard">
         <nuxt-link to="/login">
           <span>登录</span>
         </nuxt-link>
@@ -36,7 +36,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import main from './main'
+import main from './Home/Content'
 
 export default {
   async asyncData () {
@@ -47,11 +47,6 @@ export default {
       bbses: data
     }
   },
-  head () {
-    return {
-      title: 'CodingWell'
-    }
-  },
   components: {
     'cdw-main': main
   }
@@ -59,12 +54,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.header
+.cdw-header
   width 100%
   height 6rem
   overflow hidden
   background #ded5c4
-  .header_content
+  .cdw-header-content
     width 60%
     height 6rem
     display flex
@@ -78,7 +73,7 @@ export default {
         vertical-align middle
       svg
         vertical-align middle
-    .dashboard
+    .cdw-dashboard
       a
         color #fff
         font-size 1.4rem
@@ -86,43 +81,5 @@ export default {
         padding .3rem .6rem
         background #76d067
         margin-right .8rem
-.main
-  width 100%
-  .main_content
-    width 60%
-    margin 0 auto
-    .posts_wrap
-      width 100%
-      .posts
-        margin 0
-        padding 0
-        list-style none
-        .post
-          .post_item
-            display flex
-            justify-content space-between
-            .post_user
-              flex 0 0 6rem
-              width 6rem
-              height 6rem
-              overflow hidden
-              vertical-align middle
-              display flex
-              justify-content center
-              align-items center
-              a
-                width 4rem
-                height 4rem
-                display block
-                img
-                  width 100%
-                  border-radius .3rem
-            .post_main
-              flex 1
-              vertical-align middle
-              h2
-                padding 0
-                margin 0
-                line-height 4rem
 
 </style>

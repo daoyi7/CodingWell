@@ -1,5 +1,5 @@
 <template>
-<div class="main">
+<div class="cdw-content">
   <div class="main_content">
     <div class="posts_wrap">
       <ul class="posts">
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.main
+.cdw-content
   width 100%
   .main_content
     width 60%
@@ -56,7 +56,6 @@ export default {
               width 6rem
               height 6rem
               overflow hidden
-              border-radius .3rem
               vertical-align middle
               display flex
               justify-content center
@@ -67,6 +66,7 @@ export default {
                 display block
                 img
                   width 100%
+                  border-radius .3rem
             .post_main
               flex 1
               vertical-align middle
