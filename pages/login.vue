@@ -3,7 +3,7 @@
     <div class="cdw-login-bg"></div>
     <div class="cdw-login-box">
       <h2>欢迎回来</h2>
-      <form class="cdw-login-main" action="" method="post">
+      <form class="cdw-login-main" action="/" method="post">
         <div class="cdw-login-username">
           <input type="text" name="username" placeholder="用户名">
         </div>
@@ -11,6 +11,11 @@
           <input type="password" name="password" placeholder="密码">
         </div>
         <button type="submit" name="button">登录</button>
+        <div class="cdw-go-register">
+          <nuxt-link to="/register">
+            <span>还没有账号？立即注册</span>
+          </nuxt-link>
+        </div>
       </form>
     </div>
   </div>
@@ -47,15 +52,19 @@ export default {
   .cdw-login-box
     position fixed
     z-index 3
-    width 20vw
+    width 25rem
     padding-bottom 21rem
     h2
       text-align center
-      line-height 2rem
+      line-height 3rem
+      padding 1.2rem 0 0
       font-size 1.8rem
-      color #022d50
+      color #76d067
+      background #fff
+      margin 0
     .cdw-login-main
-      padding 0 3rem
+      padding 2rem 3rem 2rem
+      background #fff
       input
         width 100%
         height 3rem
@@ -70,4 +79,9 @@ export default {
         background #76d067
         color #fff
         margin-top 1rem
+      .cdw-go-register
+        padding-top 1rem
+        text-align right
+        a:hover
+          text-decoration underline
 </style>
