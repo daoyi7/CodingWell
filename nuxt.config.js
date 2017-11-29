@@ -10,7 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
     ]
   },
   /*
@@ -20,6 +20,10 @@ module.exports = {
   /*
   ** Add axios globally
   */
+  loading: {
+    color: 'blue',
+    height: '5px'
+  },
   build: {
     vendor: ['axios'],
     /*
