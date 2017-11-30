@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     sbreg () {
-      axios.post('/api/test', {
+      axios.post('/api/register', {
         username: this.username,
         password: this.password
       })

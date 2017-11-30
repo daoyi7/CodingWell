@@ -1,11 +1,11 @@
 import { Router } from 'express'
 
 import content from './content'
-import test from './test'
+import register from './register'
 
 const router = Router()
 
 router.use(content)
-router.use(test)
+router.use(register)
 
 export default router
