@@ -1,8 +1,14 @@
-import {
-  Router
-} from 'express'
+import {Router} from 'express'
+const mysql = require('mysql')
 
 const router = Router()
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  database: 'hupu',
+  user: 'root',
+  password: ''
+})
 
 const posts = [{
     "id": 409983,
@@ -306,17 +312,44 @@ const posts = [{
   }
 ]
 
-router.get('/content', function(req, res) {
-  res.json(posts)
-})
+connection.query('select * from voice_nba', (err, rows, fields) => {
+  if(err) {
+    console.log(err)
+  }
+  if(rows) {
+    // app.get('/', (req, res) => {
+    //   res.send(rows)
+    // })
+    // console.log(rows)
 
-router.get('/content/:id', function(req, res, next) {
-  const id = parseInt(req.params.id)
-  if (id >= 0 && id < posts.length) {
-    res.json(posts[id])
-  } else {
-    res.sendStatus(404)
+    router.get('/content', function(req, res) {
+      res.json(rows)
+    })
+
+    router.get('/content/:id', function(req, res, next) {
+      const id = parseInt(req.params.id)
+      if (id >= 0 && id < posts.length) {
+        res.json(rows[id])
+      } else {
+        res.sendStatus(404)
+      }
+    })
   }
 })
+
+connection.end()
+
+// router.get('/content', function(req, res) {
+//   res.json(posts)
+// })
+//
+// router.get('/content/:id', function(req, res, next) {
+//   const id = parseInt(req.params.id)
+//   if (id >= 0 && id < posts.length) {
+//     res.json(posts[id])
+//   } else {
+//     res.sendStatus(404)
+//   }
+// })
 
 export default router

@@ -42,7 +42,7 @@ export default {}
   overflow hidden
   background #ded5c4
   .cdw-header-content
-    width 100rem
+    width 80vw
     height 6rem
     display flex
     align-items center

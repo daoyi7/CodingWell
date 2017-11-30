@@ -1,16 +1,19 @@
 <template>
   <div class="codingwell">
+    <cdw-header/>
     <nuxt/>
-    <!-- <my-footer/> -->
+    <cdw-footer/>
   </div>
 </template>
 
 <script>
-import MyFooter from '~/components/Footer.vue'
+import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
-    MyFooter
+    'cdw-header': Header,
+    'cdw-footer': Footer
   }
 }
 </script>

@@ -7,13 +7,13 @@
           <section class="content-item">
             <div class="content-user">
               <a href="#">
-                <img :src="bbs.member.avatar_normal" :alt="bbs.member.username">
+                <img :src="bbs.thumb" :alt="bbs.title">
               </a>
             </div>
             <div class="content-main">
               <h2>{{bbs.title}}</h2>
               <div class="content-info">
-                <span class="content-username">{{bbs.member.username}}</span>
+                <span class="content-username">{{bbs.source}}</span>
               </div>
             </div>
           </section>
@@ -77,9 +77,11 @@ export default {
                 width 4rem
                 height 4rem
                 display block
+                overflow hidden
+                border-radius .3rem
                 img
                   width 100%
-                  border-radius .3rem
+                  transform scale(5)
             .content-main
               flex 1
               vertical-align middle

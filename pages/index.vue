@@ -1,13 +1,11 @@
 <template>
 <section class="container">
-  <cdw-header></cdw-header>
   <cdw-main :bbses="bbses"></cdw-main>
 </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-import header from './Header'
 import content from './Home/Content'
 
 export default {
@@ -20,7 +18,6 @@ export default {
     }
   },
   components: {
-    'cdw-header': header,
     'cdw-main': content
   }
 }
