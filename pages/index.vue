@@ -1,12 +1,16 @@
 <template>
 <section class="container">
-  <cdw-main :bbses="bbses"></cdw-main>
+  <cdw-header/>
+  <cdw-content :bbses="bbses"></cdw-content>
+  <cdw-footer/>
 </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-import content from './Home/Content'
+import Header from './Header'
+import Footer from './Footer'
+import Content from './Home/Content'
 
 export default {
   async asyncData () {
@@ -18,7 +22,9 @@ export default {
     }
   },
   components: {
-    'cdw-main': content
+    'cdw-header': Header,
+    'cdw-footer': Footer,
+    'cdw-content': Content
   }
 }
 </script>

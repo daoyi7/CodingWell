@@ -8,8 +8,9 @@ html, body
   color: #000;
   letter-spacing: 0.5px;
   font-family: "Microsoft YaHei", "Source Sans Pro", Arial, sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 10px;
+  line-height: 1;
 }
 
 footer
@@ -21,15 +22,6 @@ footer
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
-}
-
-body {
-  line-height: 1;
-  font-size: 1em;
-}
-
-html {
-  font-size: 62.5%;
 }
 
 ol, ul {
@@ -60,4 +52,26 @@ a, a:hover, a:focus, a:visited
 }
 input:focus, input:hover, input:active, button:focus, button:hover, button:active {
   outline: none;
+}
+
+@media (min-width: 1024px){
+  .cdw-wrap {
+    padding: 0 10vw
+  }
+} /*>=1024的设备*/
+
+@media (min-width: 1100px) {
+  .cdw-wrap {
+    padding: 0 15vw
+  }
+} /*>=1024的设备*/
+@media (min-width: 1280px) {
+  .cdw-wrap {
+    padding: 0 18vw
+  }
+}
+@media (min-width: 1920px) {
+  .cdw-wrap {
+    padding: 0 20vw
+  }
 }

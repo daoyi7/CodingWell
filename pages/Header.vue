@@ -1,6 +1,6 @@
 <template>
 <section class="cdw-header">
-  <header class="cdw-header-content">
+  <header class="cdw-header-content cdw-wrap">
     <nuxt-link to="/">
       <img src="~assets/img/codingwell.png" alt="CodingWell" class="logo" />
       <svg version="1.1" id="Layer_1" x="0px" y="0px" width="174px" height="24px" viewBox="0 0 348 48" enable-background="new 0 0 348 48" xml:space="preserve">  <image id="image0" width="348" height="48" x="0" y="0"
@@ -41,13 +41,13 @@ export default {}
   height 6rem
   overflow hidden
   background #ded5c4
+  box-shadow 0px 0.1rem 0.1rem #051c2d47
   .cdw-header-content
-    width 80vw
+    margin 0 auto
     height 6rem
     display flex
     align-items center
     justify-content space-between
-    margin 0 auto
     a
       img
         height: 3rem

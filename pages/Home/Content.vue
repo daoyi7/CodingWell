@@ -1,6 +1,6 @@
 <template>
 <div class="cdw-content">
-  <div class="main_content">
+  <div class="main_content cdw-wrap">
     <section class="contents-wrap">
       <ul class="contents">
         <li v-for="(bbs, idx) in bbses" :key="idx" class="content">
@@ -49,12 +49,10 @@ export default {
 .cdw-content
   width 100%
   .main_content
-    width 100rem
     margin 0 auto
     display flex
     .contents-wrap
-      flex 0 0 80rem
-      width 80rem
+      flex-grow 3
       .contents
         margin 0
         padding 0 5rem 0 0
@@ -83,12 +81,13 @@ export default {
                   width 100%
                   transform scale(5)
             .content-main
-              flex 1
+              flex-grow 1
               vertical-align middle
               h2
                 padding 0
                 margin 0
-                line-height 4rem
+                line-height 3.2rem
+                padding-bottom .5em
     .main-bar
       flex 1
       width 100%
