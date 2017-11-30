@@ -1,9 +1,6 @@
 const resolve = require('path').resolve
 
 module.exports = {
-  /*
-   ** Headers of the page
-   */
   head: {
     title: 'CodingWell',
     meta: [{
@@ -25,24 +22,15 @@ module.exports = {
       href: '/cdw.ico'
     }]
   },
-  /*
-   ** Global CSS
-   */
   css: [
     '~/assets/css/main.css',
     '~/assets/css/iconfont.css'
   ],
-  /*
-   ** Add axios globally
-   */
   loading: {
     color: '#54b743'
   },
   build: {
     vendor: ['axios'],
-    /*
-     ** Run ESLINT on save
-     */
     extend (config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({

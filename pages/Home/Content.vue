@@ -93,11 +93,11 @@ export default {
       height 20rem
       .box
         display flex
-        padding 0 2rem
+        padding 1rem 2rem 0
         .avatar
-          flex 0 0 5rem
-          width 5rem
-          height 5rem
+          flex 0 0 4rem
+          width 4rem
+          height 4rem
           overflow hidden
           border-radius .3rem
           img
@@ -105,7 +105,7 @@ export default {
             height 100%
         .username
           flex 1
-          padding 2.5rem 1.5rem 0
+          padding 1.5rem 1.5rem 0
           span
             font-size 1.8rem
             font-weight 500
