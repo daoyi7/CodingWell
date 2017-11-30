@@ -1,24 +1,10 @@
-const express = require('express')
-const mysql = require('mysql')
+import {Router} from 'express'
 
-const app = express()
+const router = Router()
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  database: 'node-mysql',
-  user: 'root',
-  password: ''
+router.post('/test', function(req, res) {
+  res.send(123)
+  console.log( req)
 })
 
-connection.connect()
-
-let data = {
- name: 'kawhi123',
- email: 'kawhichina@gmai.com'
-}
-
-connection.query('INSERT INTO api SET ?', data, (error, results, fields) => {
- if(error) throw error
-})
-
-connection.end()
+export default router

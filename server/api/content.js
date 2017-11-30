@@ -306,7 +306,7 @@ const posts = [{
   }
 ]
 
-router.get('/content', function(req, res, next) {
+router.get('/content', function(req, res) {
   res.json(posts)
 })
 
