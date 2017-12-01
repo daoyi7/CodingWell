@@ -42,8 +42,8 @@ export default {
         username: this.username,
         password: this.password
       }).then((res) => {
-        console.log(res)
         if (res.data === 'success') {
+          this.$router.push('/')
           return true
         } else {
           return false
