@@ -29,8 +29,15 @@ router.post('/login', function(req, res, next) {
       if(err) {
         console.log(err)
       }
-      bcrypt.compare(data.password, results[0].password, function(err, res) {
-          console.log(res)
+
+      bcrypt.compare(data.password, results[0].password, function(err, resb) {
+          if(resb === true) {
+            console.log("true")
+            res.send('success')
+          }else {
+            console.log("false")
+            res.send('failed')
+          }
       });
     })
 

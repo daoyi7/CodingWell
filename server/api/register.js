@@ -24,11 +24,8 @@ router.post('/register', function(req, res, next) {
     let saltPsw = bcrypt.genSaltSync(10);
     let hashPsw = bcrypt.hashSync(data.password, saltPsw)
 
-    console.log(data.password)
-    console.log(saltPsw)
-    console.log(hashPsw)
-
     connection.connect()
+    connection.escape(data.username)
 
     let sql = 'INSERT INTO user_table (username, password) VALUES (?,?)'
 

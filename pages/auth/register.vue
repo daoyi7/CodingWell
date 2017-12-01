@@ -3,14 +3,14 @@
     <div class="cdw-register-bg"></div>
     <div class="cdw-register-box">
       <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
-      <form class="cdw-register-main" action="/login" method="post">
+      <form class="cdw-register-main" action="/login" method="post" @submit="onSubmit">
         <div class="cdw-register-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-register-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
         </div>
-        <button @click="sbreg" type="submit" name="button">注册</button>
+        <button type="submit" name="button">注册</button>
         <div class="cdw-go-login">
           <nuxt-link to="/login">
             <span>已有账号？立即登录</span>
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    sbreg () {
+    onSubmit () {
       axios.post('/api/register', {
         username: this.username,
         password: this.password

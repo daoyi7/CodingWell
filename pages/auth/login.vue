@@ -3,14 +3,14 @@
     <div class="cdw-login-bg"></div>
     <div class="cdw-login-box">
       <h2>欢迎回来</h2>
-      <form class="cdw-login-main" action="" method="post">
+      <form class="cdw-login-main" action="/" method="post" @submit.prevent="onSubmit">
         <div class="cdw-login-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-login-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
         </div>
-        <button @click="sblogin" type="submit" name="button">登录</button>
+        <button type="submit" name="button">登录</button>
         <div class="cdw-go-login">
           <nuxt-link to="/register">
             <span>还没有账号？立即注册</span>
@@ -37,10 +37,17 @@ export default {
     }
   },
   methods: {
-    sblogin () {
+    onSubmit () {
       axios.post('/api/login', {
         username: this.username,
         password: this.password
+      }).then((res) => {
+        console.log(res)
+        if (res.data === 'success') {
+          return true
+        } else {
+          return false
+        }
       })
     }
   }
