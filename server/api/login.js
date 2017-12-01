@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   password: ''
 })
 
-router.post('/register', function(req, res, next) {
+router.post('/login', function(req, res, next) {
   var post = ''
   req.on('data', function(chunk) {
     post += chunk
@@ -21,19 +21,17 @@ router.post('/register', function(req, res, next) {
 
     let data = JSON.parse(post)
 
-    let saltPsw = bcrypt.genSaltSync(10);
-    let hashPsw = bcrypt.hashSync(data.password, saltPsw)
+    connection.escape(data.username)
 
-    console.log(data.password)
-    console.log(saltPsw)
-    console.log(hashPsw)
+    let sql = "SELECT username,password FROM user_table WHERE username='" + data.username + "'"
 
-    connection.connect()
-
-    let sql = 'INSERT INTO user_table (username, password) VALUES (?,?)'
-
-    connection.query(sql, [data.username, hashPsw], (error, result, fields) => {
-     if(error) throw error
+    connection.query(sql, (err, results, fields) => {
+      if(err) {
+        console.log(err)
+      }
+      bcrypt.compare(data.password, results[0].password, function(err, res) {
+          console.log(res)
+      });
     })
 
   })
