@@ -30,15 +30,17 @@ router.post('/login', function(req, res, next) {
         console.log(err)
       }
 
-      bcrypt.compare(data.password, results[0].password, function(err, resb) {
+      if(results.length > 0) {
+        bcrypt.compare(data.password, results[0].password, function(err, resb) {
           if(resb === true) {
-            console.log("true")
-            res.send('success')
-          }else {
-            console.log("false")
-            res.send('failed')
+            res.send('1')
+          } else {
+            res.send('0')
           }
-      });
+        })
+      } else {
+        res.send('-1')
+      }
     })
 
   })

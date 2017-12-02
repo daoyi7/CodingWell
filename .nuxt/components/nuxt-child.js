@@ -3,20 +3,16 @@ import Vue from 'vue'
 const transitionsKeys = [
   'name',
   'mode',
-  'appear',
   'css',
   'type',
   'duration',
   'enterClass',
   'leaveClass',
-  'appearClass',
   'enterActiveClass',
   'enterActiveClass',
   'leaveActiveClass',
-  'appearActiveClass',
   'enterToClass',
-  'leaveToClass',
-  'appearToClass'
+  'leaveToClass'
 ]
 const listenersKeys = [
   'beforeEnter',
@@ -26,11 +22,7 @@ const listenersKeys = [
   'beforeLeave',
   'leave',
   'afterLeave',
-  'leaveCancelled',
-  'beforeAppear',
-  'appear',
-  'afterAppear',
-  'appearCancelled'
+  'leaveCancelled'
 ]
 
 export default {

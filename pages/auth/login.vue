@@ -10,6 +10,9 @@
         <div class="cdw-login-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
         </div>
+        <div class="cdw-login-warn" v-if="this.warn !== ''">
+          <p>{{this.warn}}</p>
+        </div>
         <button type="submit" name="button">登录</button>
         <div class="cdw-go-login">
           <nuxt-link to="/register">
@@ -28,7 +31,8 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      warn: ''
     }
   },
   head () {
@@ -42,11 +46,12 @@ export default {
         username: this.username,
         password: this.password
       }).then((res) => {
-        if (res.data === 'success') {
+        if (res.data === 1) {
           this.$router.push('/')
-          return true
+        } else if (res.data === 0) {
+          this.warn = '密码错误'
         } else {
-          return false
+          this.warn = '用户不存在'
         }
       })
     }
@@ -102,6 +107,12 @@ export default {
         background #76d067
         color #fff
         margin-top 1rem
+      p
+        padding .8rem 0
+        color #a94442
+        background-color #f2dede
+        border-color #ebccd1
+        text-align center
       .cdw-go-login
         padding-top 1rem
         text-align right
