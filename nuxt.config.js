@@ -45,16 +45,6 @@ module.exports = {
     // middleware: 'auth',
     extendRoutes (routes) {
       routes.push(
-        {
-          name: 'register',
-          path: '/register',
-          component: resolve(__dirname, 'pages/auth/register')
-        },
-        {
-          name: 'login',
-          path: '/login',
-          component: resolve(__dirname, 'pages/auth/login')
-        }
       )
     }
   }

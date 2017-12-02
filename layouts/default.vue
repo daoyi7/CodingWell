@@ -19,11 +19,24 @@ export default {
     'cdw-header': Header,
     'cdw-footer': Footer
   },
+  mounted () {
+    if (localStorage.auth_state) {
+      this.$store.commit('toggleAuthState')
+      this.$store.commit('addAuthUsername')
+    }
+
+    let routeNameArray = ['auth-login', 'auth-register', null]
+    let _thisRouteName = this.$router.currentRoute.name
+
+    if (routeNameArray.indexOf(_thisRouteName) !== -1) {
+      this.hf_is_show = false
+    }
+  },
   watch: {
     '$route' (to, from) {
-      if (to.name === 'login') {
+      if (to.name === 'auth-login') {
         this.hf_is_show = false
-      } else if (to.name === 'register') {
+      } else if (to.name === 'auth-register') {
         this.hf_is_show = false
       } else if (to.name === null) {
         this.hf_is_show = false

@@ -3,7 +3,7 @@
     <div class="cdw-register-bg"></div>
     <div class="cdw-register-box">
       <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
-      <form class="cdw-register-main" action="/login" method="post" @submit.prevent="onSubmit">
+      <form class="cdw-register-main" action="/auth/login" method="post" @submit.prevent="onSubmit">
         <div class="cdw-register-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
@@ -15,7 +15,7 @@
         </div>
         <button type="submit" name="button">注册</button>
         <div class="cdw-go-login">
-          <nuxt-link to="/login">
+          <nuxt-link to="/auth/login">
             <span>已有账号？立即登录</span>
           </nuxt-link>
         </div>

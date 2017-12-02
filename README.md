@@ -34,6 +34,8 @@
   - ~~修改 404 页面~~
   - ~~服务端传递用户名，前端改变 state~~
   - ~~用户注册的时候查询数据库 避免用户名重复~~
+  - ~~基于 nuxt 不能 redirect 修改路由~~
+  - ~~通过 localStorage 改变 vuex state~~
 
 <!-- ## Build Setup
 

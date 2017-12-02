@@ -15,7 +15,7 @@
         </div>
         <button type="submit" name="button">登录</button>
         <div class="cdw-go-register">
-          <nuxt-link to="/register">
+          <nuxt-link to="/auth/register">
             <span>还没有账号？立即注册</span>
           </nuxt-link>
         </div>
@@ -48,9 +48,13 @@ export default {
       }).then((res) => {
         if (res.data.login_status === 1) {
           this.$store.commit('toggleAuthState')
-          this.$store.state.auth_username = res.data.username
-          window.localStorage.removeItem('username')
-          window.localStorage.setItem('username', res.data.username)
+          // this.$store.state.auth_username = res.data.username
+          let authState = this.$store.state.auth_state
+          window.localStorage.removeItem('auth_username')
+          window.localStorage.removeItem('auth_state')
+          window.localStorage.setItem('auth_username', res.data.username)
+          window.localStorage.setItem('auth_state', authState)
+          this.$store.commit('addAuthUsername')
 
           this.$router.push('/')
         } else if (res.data.login_status === 0) {

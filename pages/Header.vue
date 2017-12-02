@@ -24,10 +24,10 @@
         <span class="logout" @click="logout">{{ this.$store.state.auth_username }}</span>
       </div>
       <div class="unlogin" v-if = "!this.$store.state.auth_state">
-        <nuxt-link class="login" to="/login">
+        <nuxt-link class="login" to="/auth/login">
           <span>登录</span>
         </nuxt-link>
-        <nuxt-link class="register" to="/register">
+        <nuxt-link class="register" to="/auth/register">
           <span>注册</span>
         </nuxt-link>
       </div>
@@ -46,9 +46,12 @@ export default {
   },
   methods: {
     logout () {
+      window.localStorage.removeItem('auth_username')
+      window.localStorage.removeItem('auth_state')
       this.$store.commit('toggleAuthState')
+      this.$store.commit('addAuthUsername')
 
-      this.$router.push('/login')
+      this.$router.push('/auth/login')
     }
   }
 }
