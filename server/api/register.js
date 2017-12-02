@@ -18,19 +18,34 @@ router.post('/register', function(req, res, next) {
     post += chunk
   })
   req.on('end', function() {
-
+    
     let data = JSON.parse(post)
 
     let saltPsw = bcrypt.genSaltSync(10);
     let hashPsw = bcrypt.hashSync(data.password, saltPsw)
 
-    connection.connect()
     connection.escape(data.username)
 
-    let sql = 'INSERT INTO user_table (username, password) VALUES (?,?)'
+    let sql_query = "SELECT username,password FROM user_table WHERE username='" + data.username + "'"
 
-    connection.query(sql, [data.username, hashPsw], (error, result, fields) => {
-     if(error) throw error
+    let sql_insert = 'INSERT INTO user_table (username, password) VALUES (?,?)'
+
+    connection.query(sql_query, (err, results, fields) => {
+      if(err) {
+        console.log(err)
+      }
+      console.log(results)
+
+      if(results.length > 0) {
+        res.send({
+          reg_status: -1,
+          username: data.username
+        })
+      } else {
+        connection.query(sql_insert, [data.username, hashPsw], (error, result, fields) => {
+         if(error) throw error
+        })
+      }
     })
 
   })

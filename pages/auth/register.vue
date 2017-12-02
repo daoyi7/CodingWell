@@ -3,12 +3,15 @@
     <div class="cdw-register-bg"></div>
     <div class="cdw-register-box">
       <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
-      <form class="cdw-register-main" action="/login" method="post" @submit="onSubmit">
+      <form class="cdw-register-main" action="/login" method="post" @submit.prevent="onSubmit">
         <div class="cdw-register-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-register-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
+        </div>
+        <div class="cdw-register-warn" v-if="this.warn !== ''">
+          <p>{{this.warn}}</p>
         </div>
         <button type="submit" name="button">注册</button>
         <div class="cdw-go-login">
@@ -28,7 +31,8 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      warn: ''
     }
   },
   head () {
@@ -41,6 +45,11 @@ export default {
       axios.post('/api/register', {
         username: this.username,
         password: this.password
+      }).then((res) => {
+        if (res.data.reg_status === -1) {
+          // return false
+          this.warn = '用户名已存在'
+        }
       })
     }
   }
@@ -110,6 +119,11 @@ export default {
         background #76d067
         color #fff
         margin-top 1rem
+      p
+        padding .8rem 0
+        color #a94442
+        background-color #f2dedeb0
+        text-align center
       .cdw-go-login
         padding-top 1rem
         text-align right

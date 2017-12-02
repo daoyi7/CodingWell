@@ -21,7 +21,6 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      console.log(to)
       if (to.name === 'login') {
         this.hf_is_show = false
       } else if (to.name === 'register') {

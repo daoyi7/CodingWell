@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100126
 File Encoding         : 65001
 
-Date: 2017-12-01 17:01:53
+Date: 2017-12-02 16:56:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,12 +32,16 @@ CREATE TABLE `user_table` (
   `address` varchar(555) DEFAULT NULL,
   `education` varchar(555) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_table
 -- ----------------------------
 INSERT INTO `user_table` VALUES ('18', 'admin', '$2a$10$/jRvBh81VjQMYPTeEldiGetOWmgCkee.8ICzAe19Xz6/rYB5Qw0Zy', null, null, null, null, null, null, null, null);
+INSERT INTO `user_table` VALUES ('20', '123', '$2a$10$l8PYv/5KES.XYVThBNGaMe5n2oEawNSE1wJEh9CDkwhX3CogLWjtG', null, null, null, null, null, null, null, null);
+INSERT INTO `user_table` VALUES ('21', '789', '$2a$10$jWdilL7jVVO4DNiTe/hnPupklQy90Wizr82MpBBRwgYq5aAaJLuWC', null, null, null, null, null, null, null, null);
+INSERT INTO `user_table` VALUES ('22', '999', '$2a$10$aVsnCeykQhl2FYMZLJSzAupayZNDbx76SlXUK81ktdJY4Z9uxSwYi', null, null, null, null, null, null, null, null);
+INSERT INTO `user_table` VALUES ('23', '99', '$2a$10$GH4ya/3mcXeBp06eaesYdObI3nLLozXmoyY0WybBT4/h1z9O5E/lm', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for voice_nba

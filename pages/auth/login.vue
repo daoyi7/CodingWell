@@ -14,7 +14,7 @@
           <p>{{this.warn}}</p>
         </div>
         <button type="submit" name="button">登录</button>
-        <div class="cdw-go-login">
+        <div class="cdw-go-register">
           <nuxt-link to="/register">
             <span>还没有账号？立即注册</span>
           </nuxt-link>
@@ -120,7 +120,7 @@ export default {
         color #a94442
         background-color #f2dedeb0
         text-align center
-      .cdw-go-login
+      .cdw-go-register
         padding-top 1rem
         text-align right
         a:hover
