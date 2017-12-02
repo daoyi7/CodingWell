@@ -46,15 +46,15 @@ export const state = () => ({
   auth_username: null
 })
 
-// export const mutations = {
-//   toggle (state) {
-//     if (state.auth_state) {
-//       state.auth_state = false
-//     } else {
-//       state.auth_state = true
-//     }
-//   }
-// }
+export const mutations = {
+  toggleAuthState (state) {
+    if (state.auth_state) {
+      state.auth_state = false
+    } else {
+      state.auth_state = true
+    }
+  }
+}
 
 // export const actions = {
 //   goNav ({commit}) {

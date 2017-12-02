@@ -42,6 +42,7 @@ module.exports = {
     }
   },
   router: {
+    // middleware: 'auth',
     extendRoutes (routes) {
       routes.push(
         {

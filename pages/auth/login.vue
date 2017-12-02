@@ -47,7 +47,7 @@ export default {
         password: this.password
       }).then((res) => {
         if (res.data.login_status === 1) {
-          this.$store.state.auth_state = true
+          this.$store.commit('toggleAuthState')
           this.$store.state.auth_username = res.data.username
           window.localStorage.removeItem('username')
           window.localStorage.setItem('username', res.data.username)

@@ -20,12 +20,10 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <div class="user-data" v-if = "username !== ''">
-        <nuxt-link class="logout" to="/logout">
-          <span>{{ username }}</span>
-        </nuxt-link>
+      <div class="user-data" v-if = "this.$store.state.auth_state">
+        <span class="logout" @click="logout">{{ this.$store.state.auth_username }}</span>
       </div>
-      <div class="unlogin" v-if = "username == ''">
+      <div class="unlogin" v-if = "!this.$store.state.auth_state">
         <nuxt-link class="login" to="/login">
           <span>登录</span>
         </nuxt-link>
@@ -44,6 +42,13 @@ export default {
     username: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.commit('toggleAuthState')
+
+      this.$router.push('/login')
     }
   }
 }
@@ -70,6 +75,10 @@ export default {
       svg
         vertical-align middle
     .cdw-dashboard
+      .logout
+        padding .3rem .6rem
+        font-size 1.5rem
+        color #fff
       .login,.register
         color #fff
         font-size 1.4rem
@@ -77,8 +86,4 @@ export default {
         padding .3rem .6rem
         background #76d067
         margin-right .8rem
-      .logout
-        padding .3rem .6rem
-        font-size 1.5rem
-        color #fff
 </style>

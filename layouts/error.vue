@@ -19,7 +19,7 @@
 export default {
   head () {
     return {
-      title: 'CodingWell | 404',
+      title: 'CodingWell | This page could not be found',
       link: [{
         rel: 'icon',
         type: 'image/x-icon',
