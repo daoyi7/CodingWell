@@ -49,6 +49,8 @@ export default {
         if (res.data.reg_status === -1) {
           // return false
           this.warn = '用户名已存在'
+        } else if (res.data.reg_status === 1) {
+          this.$router.push('/auth/login')
         }
       })
     }

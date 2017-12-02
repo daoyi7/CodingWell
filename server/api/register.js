@@ -18,7 +18,7 @@ router.post('/register', function(req, res, next) {
     post += chunk
   })
   req.on('end', function() {
-    
+
     let data = JSON.parse(post)
 
     let saltPsw = bcrypt.genSaltSync(10);
@@ -42,6 +42,10 @@ router.post('/register', function(req, res, next) {
           username: data.username
         })
       } else {
+        res.send({
+          reg_status: 1,
+          username: data.username
+        })
         connection.query(sql_insert, [data.username, hashPsw], (error, result, fields) => {
          if(error) throw error
         })
