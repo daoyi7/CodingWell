@@ -49,6 +49,8 @@ export default {
         if (res.data.login_status === 1) {
           this.$store.state.auth_state = true
           this.$store.state.auth_username = res.data.username
+          window.localStorage.removeItem('username')
+          window.localStorage.setItem('username', res.data.username)
 
           this.$router.push('/')
         } else if (res.data.login_status === 0) {

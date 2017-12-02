@@ -4,3 +4,11 @@
     创意开发者社区 <nuxt-link to="/">CodingWell</nuxt-link>
   </footer>
 </template>
+
+<script>
+export default {
+}
+</script>
+
+<style lang="stylus" scoped>
+</style>

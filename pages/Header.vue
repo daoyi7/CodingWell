@@ -21,13 +21,15 @@
     </nuxt-link>
     <div class="cdw-dashboard">
       <div class="user-data" v-if = "username !== ''">
-        {{ username }}
+        <nuxt-link class="logout" to="/logout">
+          <span>{{ username }}</span>
+        </nuxt-link>
       </div>
       <div class="unlogin" v-if = "username == ''">
-        <nuxt-link to="/login">
+        <nuxt-link class="login" to="/login">
           <span>登录</span>
         </nuxt-link>
-        <nuxt-link to="/register">
+        <nuxt-link class="register" to="/register">
           <span>注册</span>
         </nuxt-link>
       </div>
@@ -68,11 +70,15 @@ export default {
       svg
         vertical-align middle
     .cdw-dashboard
-      a
+      .login,.register
         color #fff
         font-size 1.4rem
         text-decoration none
         padding .3rem .6rem
         background #76d067
         margin-right .8rem
+      .logout
+        padding .3rem .6rem
+        font-size 1.5rem
+        color #fff
 </style>

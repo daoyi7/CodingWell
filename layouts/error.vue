@@ -7,9 +7,11 @@
       <h2 class="info">
         {{ error.message }}
       </h2>
-      <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-        Homepage
-      </nuxt-link>
+      <div class="tohome">
+        <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
+          CodingWell
+        </nuxt-link>
+      </div>
     </div>
   </section>
 </template>
@@ -44,4 +46,20 @@ export default {
         margin 0 1rem
     .info
       padding 1rem 0
+      margin .3rem 0 1rem
+    .tohome
+      width 100%
+      height 3rem
+      text-align center
+      line-height 3rem
+      a
+        color #000
+        font-weight 700
+        padding .6rem 1.6rem
+        border 1px solid #000
+        background #fff
+        transition all linear .5s
+        &:hover
+          color #fff
+          background #000
 </style>
