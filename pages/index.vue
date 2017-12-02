@@ -1,6 +1,6 @@
 <template>
 <section class="container">
-  <cdw-header/>
+  <cdw-header :username = "this.username"/>
   <cdw-content :bbses="bbses"></cdw-content>
   <cdw-footer/>
 </section>
@@ -13,6 +13,11 @@ import Footer from './Footer'
 import Content from './Home/Content'
 
 export default {
+  data () {
+    return {
+      username: ''
+    }
+  },
   async asyncData () {
     let {
       data
@@ -25,6 +30,11 @@ export default {
     'cdw-header': Header,
     'cdw-footer': Footer,
     'cdw-content': Content
+  },
+  mounted () {
+    if (this.$store.state.auth_state) {
+      this.username = this.$store.state.auth_username
+    }
   }
 }
 </script>

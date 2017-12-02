@@ -20,19 +20,31 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <nuxt-link to="/login">
-        <span>登录</span>
-      </nuxt-link>
-      <nuxt-link to="/register">
-        <span>注册</span>
-      </nuxt-link>
+      <div class="user-data" v-if = "username !== ''">
+        {{ username }}
+      </div>
+      <div class="unlogin" v-if = "username == ''">
+        <nuxt-link to="/login">
+          <span>登录</span>
+        </nuxt-link>
+        <nuxt-link to="/register">
+          <span>注册</span>
+        </nuxt-link>
+      </div>
     </div>
   </header>
 </section>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    username: {
+      type: String,
+      default: ''
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

@@ -46,11 +46,17 @@ export default {
         username: this.username,
         password: this.password
       }).then((res) => {
-        if (res.data === 1) {
+        if (res.data.login_status === 1) {
+          this.$store.state.auth_state = true
+          this.$store.state.auth_username = res.data.username
+
           this.$router.push('/')
-        } else if (res.data === 0) {
+        } else if (res.data.login_status === 0) {
+          this.$store.state.auth_state = false
+
           this.warn = '密码错误'
-        } else {
+        } else if (res.data.login_status === -1) {
+          this.$store.state.auth_state = false
           this.warn = '用户不存在'
         }
       })
@@ -110,8 +116,7 @@ export default {
       p
         padding .8rem 0
         color #a94442
-        background-color #f2dede
-        border-color #ebccd1
+        background-color #f2dedeb0
         text-align center
       .cdw-go-login
         padding-top 1rem

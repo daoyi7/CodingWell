@@ -33,13 +33,22 @@ router.post('/login', function(req, res, next) {
       if(results.length > 0) {
         bcrypt.compare(data.password, results[0].password, function(err, resb) {
           if(resb === true) {
-            res.send('1')
+            res.send({
+              login_status: 1,
+              username: data.username
+            })
           } else {
-            res.send('0')
+            res.send({
+              login_status: 0,
+              username: data.username
+            })
           }
         })
       } else {
-        res.send('-1')
+        res.send({
+          login_status: -1,
+          username: data.username
+        })
       }
     })
 
