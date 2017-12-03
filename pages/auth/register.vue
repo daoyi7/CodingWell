@@ -4,14 +4,14 @@
     <div class="cdw-register-box">
       <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
       <form class="cdw-register-main" action="/auth/login" method="post" @submit.prevent="onSubmit">
+        <div class="cdw-register-warn" v-if="this.warn !== ''">
+          <p>{{this.warn}}</p>
+        </div>
         <div class="cdw-register-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-register-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
-        </div>
-        <div class="cdw-register-warn" v-if="this.warn !== ''">
-          <p>{{this.warn}}</p>
         </div>
         <button type="submit" name="button">注册</button>
         <div class="cdw-go-login">
@@ -123,8 +123,10 @@ export default {
         margin-top 1rem
       p
         padding .8rem 0
-        color #a94442
-        background-color #f2dedeb0
+        // color #a94442
+        color rgba(229, 57, 53, 0.8)
+        border 1px solid rgba(229, 57, 53, 0.38)
+        // background-color #f2dedeb0
         text-align center
       .cdw-go-login
         padding-top 1rem
