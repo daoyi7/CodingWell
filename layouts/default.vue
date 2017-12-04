@@ -26,10 +26,15 @@ export default {
     }
 
     let routeNameArray = ['auth-login', 'auth-register', null]
+    let routeNameNullArray = ['Header', 'Footer', 'Home-Content']
     let _thisRouteName = this.$router.currentRoute.name
 
     if (routeNameArray.indexOf(_thisRouteName) !== -1) {
       this.hf_is_show = false
+    }
+
+    if (routeNameNullArray.indexOf(_thisRouteName) !== -1) {
+      this.$router.push('/404')
     }
   },
   watch: {

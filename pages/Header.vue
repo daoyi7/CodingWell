@@ -21,7 +21,8 @@
     </nuxt-link>
     <div class="cdw-dashboard">
       <div class="user-data" v-if = "this.$store.state.auth_state">
-        <span class="logout" @click="logout">{{ this.$store.state.auth_username }}</span>
+        <span class="logout" @click="logout">{{this.$store.state.auth_username}}</span>
+        <nuxt-link class="setting" :to="{ name: 'auth-username',params: {username: this.$store.state.auth_username}}">设置</nuxt-link>
       </div>
       <div class="unlogin" v-if = "!this.$store.state.auth_state">
         <nuxt-link class="login" to="/auth/login">
@@ -80,7 +81,10 @@ export default {
     .cdw-dashboard
       .logout
         padding .3rem .6rem
-        font-size 1.5rem
+        font-size 1.6rem
+        color #fff
+      .setting
+        font-size 1.6rem
         color #fff
       .login,.register
         color #fff
