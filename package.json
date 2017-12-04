@@ -20,6 +20,7 @@
     "cross-env": "^5.0.1",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "iview": "^2.7.4",
     "mysql": "^2.15.0",
     "nuxt": "^1.0.0-rc3",
     "source-map-support": "^0.4.15",

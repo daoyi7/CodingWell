@@ -23,6 +23,7 @@ export default {
   height 20rem
   background #fff
   border-radius .4rem
+  box-shadow 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1)
   .box
     display flex
     padding 1rem 2rem 0

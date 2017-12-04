@@ -65,7 +65,7 @@ export default {
   height 6rem
   overflow hidden
   background #ded5c4
-  box-shadow 0px 0.1rem 0.1rem #a2a2a2
+  box-shadow 0 0.1rem 0.3rem rgba(162, 162, 162, 0.8)
   margin-bottom 2rem
   .cdw-header-content
     margin 0 auto
