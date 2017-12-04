@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
 
     connection.escape(data.username)
 
-    let sql = "SELECT username,password FROM user_table WHERE username='" + data.username + "'"
+    let sql = "SELECT username,password FROM user_table WHERE BINARY username='" + data.username + "'"
 
     connection.query(sql, (err, results, fields) => {
       if(err) {

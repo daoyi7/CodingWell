@@ -4,14 +4,14 @@
     <div class="cdw-login-box">
       <h2>欢迎回来</h2>
       <form class="cdw-login-main" action="/" method="post" @submit.prevent="onSubmit">
-        <div class="cdw-login-warn" v-if="this.warn !== ''">
-          <p>{{this.warn}}</p>
-        </div>
         <div class="cdw-login-username">
           <input type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-login-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
+        </div>
+        <div class="cdw-login-warn" v-if="this.warn !== ''">
+          <p>{{this.warn}}</p>
         </div>
         <button type="submit" name="button">登录</button>
         <div class="cdw-go-register">
@@ -63,7 +63,7 @@ export default {
           this.warn = '密码错误'
         } else if (res.data.login_status === -1) {
           this.$store.state.auth_state = false
-          this.warn = '用户不存在'
+          this.warn = '用户名错误'
         }
       })
     }
