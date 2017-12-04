@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+footer
+  background #fff
+  margin-top 2rem
 </style>

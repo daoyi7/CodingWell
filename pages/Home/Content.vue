@@ -1,6 +1,6 @@
 <template>
 <div class="cdw-content">
-  <div class="main_content cdw-wrap">
+  <div class="main-content cdw-wrap">
     <section class="contents-wrap">
       <ul class="contents">
         <li v-for="(bbs, idx) in bbses" :key="idx" class="content">
@@ -20,27 +20,23 @@
         </li>
       </ul>
     </section>
-    <section class="main-bar">
-      <div class="box">
-        <div class="avatar">
-          <img src="~assets/img/avartar.jpg">
-        </div>
-        <div class="username">
-          <span>CodingWell</span>
-        </div>
-      </div>
-    </section>
+    <cdw-right-bar></cdw-right-bar>
   </div>
 </div>
 </template>
 
 <script>
+import RightBar from '~/pages/RightBar'
+
 export default {
   props: {
     bbses: {
       type: Array,
       default: []
     }
+  },
+  components: {
+    'cdw-right-bar': RightBar
   }
 }
 </script>
@@ -48,15 +44,18 @@ export default {
 <style lang="stylus" scoped>
 .cdw-content
   width 100%
-  .main_content
+  .main-content
     margin 0 auto
     display flex
     .contents-wrap
       flex-grow 3
       .contents
         margin 0
-        padding 0 5rem 0 0
+        padding 0
+        width 98%
         list-style none
+        background #fff
+        border-radius .4rem
         .content
           .content-item
             display flex
@@ -88,26 +87,5 @@ export default {
                 margin 0
                 line-height 3.2rem
                 padding-bottom .5em
-    .main-bar
-      flex 1
-      width 100%
-      height 20rem
-      .box
-        display flex
-        padding 1rem 2rem 0
-        .avatar
-          flex 0 0 4rem
-          width 4rem
-          height 4rem
-          overflow hidden
-          border-radius .3rem
-          img
-            width 100%
-            height 100%
-        .username
-          flex 1
-          padding 1.5rem 1.5rem 0
-          span
-            font-size 1.8rem
-            font-weight 500
+
 </style>
