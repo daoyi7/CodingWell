@@ -12,12 +12,12 @@ const connection = mysql.createConnection({
   password: ''
 })
 
-router.post('/register', function(req, res, next) {
-  var post = ''
-  req.on('data', function(chunk) {
+router.post('/register', (req, res, next) => {
+  let post = ''
+  req.on('data', (chunk) => {
     post += chunk
   })
-  req.on('end', function() {
+  req.on('end', () => {
 
     let data = JSON.parse(post)
 

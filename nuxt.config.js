@@ -23,8 +23,7 @@ module.exports = {
     }]
   },
   css: [
-    '~/assets/css/main.css',
-    'iview/dist/styles/iview.css'
+    '~/assets/css/main.css'
   ],
   loading: {
     color: '#54b743'

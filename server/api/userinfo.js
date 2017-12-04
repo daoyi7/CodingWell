@@ -15,11 +15,11 @@ connection.query('select * from user_table', (err, results, fields) => {
     console.log(err)
   }
   if(results) {
-    router.get('/userinfo', function(req, res) {
+    router.get('/userinfo', (req, res) => {
       res.json(results)
     })
 
-    router.get('/userinfo/:username', function(req, res, next) {
+    router.get('/userinfo/:username', (req, res, next) => {
       let usernameArray = []
 
       for(let i=0;i<results.length;i++) {

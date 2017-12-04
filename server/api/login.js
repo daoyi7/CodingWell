@@ -12,12 +12,12 @@ const connection = mysql.createConnection({
   password: ''
 })
 
-router.post('/login', function(req, res, next) {
-  var post = ''
-  req.on('data', function(chunk) {
+router.post('/login', (req, res, next) => {
+  let post = ''
+  req.on('data', (chunk) => {
     post += chunk
   })
-  req.on('end', function() {
+  req.on('end', () => {
 
     let data = JSON.parse(post)
 
@@ -31,7 +31,7 @@ router.post('/login', function(req, res, next) {
       }
 
       if(results.length > 0) {
-        bcrypt.compare(data.password, results[0].password, function(err, resb) {
+        bcrypt.compare(data.password, results[0].password, (err, resb) => {
           if(resb === true) {
             res.send({
               login_status: 1,

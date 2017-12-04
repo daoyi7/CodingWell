@@ -83,10 +83,8 @@ export default {
     .cdw-dashboard
       .username, .logout
         padding .3rem .6rem
-        font-size 1.6rem
         color #fff
       .setting
-        font-size 1.6rem
         color #fff
       .login,.register
         color #fff

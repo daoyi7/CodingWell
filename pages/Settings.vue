@@ -9,7 +9,7 @@
           <span>设置</span>
         </p>
       </div>
-      <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
+      <form class="cdw-update-info" action="" method="post" enctype="multipart/form-data" @submit.prevent="onSubmit">
         <div class="info-id info">
           <p>
             <img src="~assets/img/codingwell.png">
@@ -38,27 +38,13 @@
         </div>
         <div class="info-avatar info">
           <label>头像</label>
-          <label class="for-avatar" for="xFile">上传文件</label>
-          <input type="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);">
-        </div>
-        <Upload
-          ref="upload"
-          :show-upload-list="false"
-          :default-file-list="defaultList"
-          :on-success="handleSuccess"
-          :format="['jpg','jpeg','png']"
-          :max-size="2048"
-          :on-format-error="handleFormatError"
-          :on-exceeded-size="handleMaxSize"
-          :before-upload="handleBeforeUpload"
-          multiple
-          type="drag"
-          action="//jsonplaceholder.typicode.com/posts/"
-          style="display: inline-block;width:58px;">
-          <div style="width: 58px;height:58px;line-height: 58px;">
-              <Icon type="camera" size="20"></Icon>
+          <input type="file" class="info-avatar-input" ref="changeAvatar" @change="handleChange">
+          <div class="info-avatar-use" @click="changeAvatar">
+            <img src='~assets/img/codingwell.png' v-if="avatar == ''">
+            <img :src="avatar" v-if="avatar !== ''">
           </div>
-        </Upload>
+          <span>{{avatar}}</span>
+        </div>
         <div class="info-submit info">
           <button type="submit" name="button">保存设置</button>
         </div>
@@ -71,8 +57,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import RightBar from '~/pages/RightBar'
-import Upload from '~/plugins/upload'
+import rightBar from '~/pages/RightBar'
 
 export default {
   data () {
@@ -81,7 +66,8 @@ export default {
       telnumber: '',
       website: '',
       birthday: '',
-      userinfo: ''
+      userinfo: '',
+      avatar: ''
     }
   },
   async asyncData (context) {
@@ -93,8 +79,7 @@ export default {
       })
   },
   components: {
-    'cdw-right-bar': RightBar,
-    Upload
+    'cdw-right-bar': rightBar
   },
   methods: {
     onSubmit () {
@@ -104,6 +89,23 @@ export default {
         telnumber: this.telnumber,
         website: this.website,
         userinfo: this.userinfo
+      })
+    },
+    changeAvatar () {
+      this.$refs.changeAvatar.click()
+    },
+    handleChange (e) {
+      const file = e.target.files[0]
+
+      console.log(file)
+      this.avatar = file.name
+      axios.post('/api/useravatar', {
+        avatar_name: file.name,
+        avatar_size: file.size,
+        avatar_lastModifiedDate: file.lastModifiedDate,
+        avatar_lastModified: file.lastModified,
+        avatar_type: file.type,
+        avatar_webkitRelativePath: file.webkitRelativePath
       })
     }
   }
@@ -177,7 +179,16 @@ export default {
           input
             height 2rem
             line-height 2rem
+            &.info-avatar-input
+              display none
           textarea
             resize none
             padding .5rem .5rem
+          .info-avatar-use
+            width 4.5rem
+            height 4.5rem
+            overflow hidden
+            border-radius .3rem
+            img
+              width 100%
 </style>

@@ -17,11 +17,11 @@ connection.query('select * from voice_nba', (err, results, fields) => {
     console.log(err)
   }
   if (results) {
-    router.get('/content', function(req, res) {
+    router.get('/content', (req, res) => {
       res.json(results)
     })
 
-    router.get('/content/:id', function(req, res, next) {
+    router.get('/content/:id', (req, res, next) => {
       const id = parseInt(req.params.id)
       if (id >= 1 && id < results.length) {
         res.json(results[id-1])
