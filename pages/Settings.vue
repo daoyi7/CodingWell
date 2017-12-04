@@ -18,23 +18,23 @@
         </div>
         <div class="info-username info">
           <label>用户名</label>
-          <span>{{username}}</span>
+          <span>{{userData.username}}</span>
         </div>
         <div class="info-email info">
           <label>邮箱</label>
-          <input type="email" v-model="email">
+          <input type="email" v-model="email" :placeholder="userData.email">
         </div>
         <div class="info-telnumber info">
           <label>手机</label>
-          <input type="text" v-model="telnumber">
+          <input type="text" v-model="telnumber" :placeholder="userData.telnumber">
         </div>
         <div class="info-website info">
           <label>网站</label>
-          <input type="text" v-model="website">
+          <input type="text" v-model="website" :placeholder="userData.website">
         </div>
         <div class="info-userinfo info">
           <label>个人简介</label>
-          <textarea rows="8" cols="40" v-model="userinfo"></textarea>
+          <textarea rows="8" cols="40" v-model="userinfo" :placeholder="userData.userinfo"></textarea>
         </div>
         <div class="info-avatar info">
           <label>头像</label>
@@ -58,7 +58,6 @@ import RightBar from '~/pages/RightBar'
 export default {
   data () {
     return {
-      username: this.$route.params.username,
       email: '',
       telnumber: '',
       website: '',
@@ -66,10 +65,9 @@ export default {
       userinfo: ''
     }
   },
-  asyncData ({params, err}) {
-    return axios.get('/api/userinfo/' + params.username)
+  async asyncData (context) {
+    return axios.get('/api/userinfo/' + context.store.state.auth_username)
       .then((res) => {
-        console.log(res)
         return {
           userData: res.data
         }
@@ -80,11 +78,11 @@ export default {
   },
   methods: {
     onSubmit () {
-      axios.post('/api/register', {
+      axios.post('/api/settings', {
+        username: this.$store.state.auth_username,
         email: this.email,
         telnumber: this.telnumber,
         website: this.website,
-        birthday: this.birthday,
         userinfo: this.userinfo
       })
     }
@@ -128,6 +126,10 @@ export default {
                 margin-right .8rem
               span
                 vertical-align middle
+          &.info-username
+            span
+              font-size 1.3rem
+              padding-left .5rem
           &.info-submit
             padding-left 5.8rem
             button
@@ -147,12 +149,15 @@ export default {
               background #76d067
               color #fff
               border-radius .3rem
-          input
-            height 2rem
-          textarea
-            resize none
           input, textarea
             border 1px solid #989898
             border-radius .3rem
             padding 0 .5rem
+            font-family '微软雅黑'
+          input
+            height 2rem
+            line-height 2rem
+          textarea
+            resize none
+            padding .5rem .5rem
 </style>

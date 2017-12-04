@@ -27,9 +27,9 @@ export default {
     display flex
     padding 1rem 2rem 0
     .avatar
-      flex 0 0 4rem
-      width 4rem
-      height 4rem
+      flex 0 0 3.5rem
+      width 3.5rem
+      height 3.5rem
       overflow hidden
       border-radius .3rem
       img

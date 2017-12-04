@@ -15,9 +15,7 @@ export default {
     }
   },
   async asyncData () {
-    let {
-      data
-    } = await axios.get('/api/content')
+    let {data} = await axios.get('/api/content')
     return {
       bbses: data
     }

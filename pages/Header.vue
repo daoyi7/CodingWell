@@ -20,11 +20,12 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <div class="user-data" v-if = "this.$store.state.auth_state">
-        <span class="logout" @click="logout">{{this.$store.state.auth_username}}</span>
-        <nuxt-link class="setting" :to="{ name: 'auth-username',params: {username: this.$store.state.auth_username}}">设置</nuxt-link>
+      <div class="user-data" v-if="this.$store.state.auth_state">
+        <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">{{this.$store.state.auth_username}}</nuxt-link>
+        <nuxt-link class="setting" to="/settings">设置</nuxt-link>
+        <span class="logout" @click="logout">登出</span>
       </div>
-      <div class="unlogin" v-if = "!this.$store.state.auth_state">
+      <div class="unlogin" v-if="!this.$store.state.auth_state">
         <nuxt-link class="login" to="/auth/login">
           <span>登录</span>
         </nuxt-link>
@@ -80,7 +81,7 @@ export default {
       svg
         vertical-align middle
     .cdw-dashboard
-      .logout
+      .username, .logout
         padding .3rem .6rem
         font-size 1.6rem
         color #fff
