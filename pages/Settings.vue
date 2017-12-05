@@ -39,11 +39,14 @@
         <div class="info-avatar info">
           <label>头像</label>
           <input type="file" class="info-avatar-input" ref="changeAvatar" @change="handleChange">
-          <div class="info-avatar-use" @click="changeAvatar">
+          <div class="info-avatar-use" @click="changeAvatar" v-if="userData.avatar == ''">
             <img src='~assets/img/codingwell.png' v-if="avatar == ''">
-            <img :src='avatar' v-if="avatar !== ''">
+            <img :src=avatar v-if="avatar !== ''">
           </div>
-          <span>{{avatar}}</span>
+          <div class="info-avatar-use" @click="changeAvatar" v-if="userData.avatar !== ''">
+            <img :src='userData.avatar' v-if="avatar == ''">
+            <img :src=avatar v-if="avatar !== ''">
+          </div>
         </div>
         <div class="info-submit info">
           <button type="submit" name="button">保存设置</button>
@@ -73,6 +76,7 @@ export default {
   async asyncData (context) {
     return axios.get('/api/userinfo/' + context.store.state.auth_username)
       .then((res) => {
+        console.log(res.data)
         return {
           userData: res.data
         }
@@ -88,7 +92,8 @@ export default {
         email: this.email,
         telnumber: this.telnumber,
         website: this.website,
-        userinfo: this.userinfo
+        userinfo: this.userinfo,
+        avatar: this.avatar
       })
     },
     changeAvatar () {
@@ -110,8 +115,8 @@ export default {
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then((res) => {
-        console.log(res.data)
-        this.avatar = '~uploads/' + res.data.originalname
+        console.log(res)
+        this.avatar = './uploads/' + res.data.filename
       })
     }
   }
@@ -197,4 +202,5 @@ export default {
             border-radius .3rem
             img
               width 100%
+              transform scale(1.1)
 </style>

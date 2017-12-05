@@ -23,8 +23,8 @@ router.post('/settings', (req, res, next) => {
 
     connection.escape(data)
 
-    let sql = 'UPDATE user_table SET email = ?, telnumber = ?, website = ?, userinfo = ? WHERE username = ?'
-    let sql_data = [data.email, data.telnumber, data.website, data.userinfo, data.username]
+    let sql = 'UPDATE user_table SET email = ?, telnumber = ?, website = ?, userinfo = ?, avatar = ? WHERE username = ?'
+    let sql_data = [data.email, data.telnumber, data.website, data.userinfo, data.avatar, data.username]
 
     connection.query(sql, sql_data, (error, result, fields) => {
       if(error) throw error

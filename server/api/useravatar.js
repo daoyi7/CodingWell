@@ -5,12 +5,16 @@ const path = require('path')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-  destination: './uploads/',
+  destination: './static/uploads/',
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
       if (err) return cb(err)
 
-      cb(null, new Date().getTime() + path.extname(file.originalname))
+      if (file.mimetype == "image/png" || file.mimetype == "image/jpeg") {
+        cb(null, new Date().getTime() + path.extname(file.originalname))
+      } else {
+        return false
+      }
     })
   }
 })
@@ -20,8 +24,7 @@ const upload = multer({ storage: storage })
 const router = Router()
 
 router.post('/useravatar', upload.single('image'), (req, res, next) => {
-  console.log(req.file)
-  res.send({
+  res.json({
     originalname: req.file.originalname,
     filename: req.file.filename
   })
