@@ -41,7 +41,7 @@
           <input type="file" class="info-avatar-input" ref="changeAvatar" @change="handleChange">
           <div class="info-avatar-use" @click="changeAvatar">
             <img src='~assets/img/codingwell.png' v-if="avatar == ''">
-            <img :src="avatar" v-if="avatar !== ''">
+            <img :src='avatar' v-if="avatar !== ''">
           </div>
           <span>{{avatar}}</span>
         </div>
@@ -109,7 +109,10 @@ export default {
         '/api/useravatar',
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
-      )
+      ).then((res) => {
+        console.log(res.data)
+        this.avatar = '~uploads/' + res.data.originalname
+      })
     }
   }
 }

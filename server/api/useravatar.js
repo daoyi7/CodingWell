@@ -21,6 +21,10 @@ const router = Router()
 
 router.post('/useravatar', upload.single('image'), (req, res, next) => {
   console.log(req.file)
+  res.send({
+    originalname: req.file.originalname,
+    filename: req.file.filename
+  })
 })
 
 export default router
