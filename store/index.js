@@ -3,37 +3,20 @@ export const state = () => ({
   auth_username: null
 })
 
-// export const getters = {
-//   addAuthUsername: (state, username) => {
-//     console.log(state)
-//     console.log(username)
-//   }
-// }
-
 export const mutations = {
-  toggleAuthState (state) {
-    if (state.auth_state) {
-      state.auth_state = false
-    } else {
-      state.auth_state = true
-    }
+  SET_STATUS (state, status) {
+    state.auth_state = status || null
   },
-  addAuthUsername (state) {
-    state.auth_username = localStorage.auth_username
+  SET_USER (state, user) {
+    state.auth_username = user || null
   }
 }
 
-// export const actions = {
-//   goNav ({commit}) {
-//     commit('go')
-//   },
-//   backNav ({commit}) {
-//     commit('back')
-//   }
-// }
-//
-// export default new Vuex.Store({
-//   state,
-//   mutations,
-//   actions
-// })
+export const getters = {
+  isAuthLogin (state) {
+    return !!state.auth_state
+  },
+  isAuthName (state) {
+    return state.auth_username
+  }
+}

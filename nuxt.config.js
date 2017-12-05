@@ -42,10 +42,9 @@ module.exports = {
     }
   },
   router: {
-    middleware: 'stats',
+    middleware: 'check-auth',
     extendRoutes (routes) {
-      routes.push(
-      )
+      routes.push()
     }
   }
 }

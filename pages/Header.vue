@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   props: {
     username: {
@@ -48,10 +50,10 @@ export default {
   },
   methods: {
     logout () {
-      window.localStorage.removeItem('auth_username')
-      window.localStorage.removeItem('auth_state')
-      this.$store.commit('toggleAuthState')
-      this.$store.commit('addAuthUsername')
+      Cookies.remove('username')
+      Cookies.remove('auth_state')
+      this.$store.commit('SET_USER')
+      this.$store.commit('SET_STATUS')
 
       this.$router.push('/auth/login')
     }
@@ -84,6 +86,7 @@ export default {
       .username, .logout
         padding .3rem .6rem
         color #fff
+        cursor pointer
       .setting
         color #fff
       .login,.register

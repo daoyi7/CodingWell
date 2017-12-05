@@ -48,6 +48,11 @@
   - ~~注册时区分大小写~~
   - ~~用户修改信息页面~~
 
+
+- 2017.12.5
+  - ~~用户修改信息页面~~
+  - ~~[js-cookie](https://github.com/js-cookie/js-cookie)处理用户登录~~
+
 <!-- ## Build Setup
 
 ``` bash

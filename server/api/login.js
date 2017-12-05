@@ -33,7 +33,6 @@ router.post('/login', (req, res, next) => {
       if(results.length > 0) {
         bcrypt.compare(data.password, results[0].password, (err, resb) => {
           if(resb === true) {
-            res.cookie('session', 'username', results[0].username)
             res.send({
               login_status: 1,
               username: results[0].username

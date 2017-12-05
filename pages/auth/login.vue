@@ -26,6 +26,7 @@
 
 <script>
 import axios from '~/plugins/axios'
+import Cookies from 'js-cookie'
 
 export default {
   data () {
@@ -47,8 +48,8 @@ export default {
         password: this.password
       }).then((res) => {
         if (res.data.login_status === 1) {
-          this.$store.commit('toggleAuthState')
-          this.$store.commit('addAuthUsername')
+          Cookies.set('username', res.data.username, { expires: 180 }, { path: '' })
+          Cookies.set('auth_state', true, { expires: 180 }, { path: '' })
 
           this.$router.push('/')
         } else if (res.data.login_status === 0) {
