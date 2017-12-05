@@ -12,7 +12,7 @@
       <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
         <div class="info-id info">
           <p>
-            <img src="~assets/img/codingwell.png">
+            <img :src='userData.avatar'>
             <span>CodingWell 第{{userData.id}}位用户</span>
           </p>
         </div>

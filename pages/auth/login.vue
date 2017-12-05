@@ -48,11 +48,6 @@ export default {
       }).then((res) => {
         if (res.data.login_status === 1) {
           this.$store.commit('toggleAuthState')
-          let authState = this.$store.state.auth_state
-          window.localStorage.removeItem('auth_username')
-          window.localStorage.removeItem('auth_state')
-          window.localStorage.setItem('auth_username', res.data.username)
-          window.localStorage.setItem('auth_state', authState)
           this.$store.commit('addAuthUsername')
 
           this.$router.push('/')

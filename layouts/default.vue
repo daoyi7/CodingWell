@@ -20,11 +20,6 @@ export default {
     'cdw-footer': Footer
   },
   mounted () {
-    if (localStorage.auth_state) {
-      this.$store.commit('toggleAuthState')
-      this.$store.commit('addAuthUsername')
-    }
-
     let routeNameArray = ['auth-login', 'auth-register', null]
     let routeNameNullArray = ['Header', 'Footer', 'Home-Content', 'RightBar']
     let _thisRouteName = this.$router.currentRoute.name
