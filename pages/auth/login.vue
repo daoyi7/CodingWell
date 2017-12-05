@@ -48,7 +48,6 @@ export default {
       }).then((res) => {
         if (res.data.login_status === 1) {
           this.$store.commit('toggleAuthState')
-          // this.$store.state.auth_username = res.data.username
           let authState = this.$store.state.auth_state
           window.localStorage.removeItem('auth_username')
           window.localStorage.removeItem('auth_state')

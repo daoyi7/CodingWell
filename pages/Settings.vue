@@ -22,19 +22,19 @@
         </div>
         <div class="info-email info">
           <label>邮箱</label>
-          <input type="email" v-model="email" :placeholder="userData.email">
+          <input type="email" v-model="email" :placeholder="userData.email" ref="email">
         </div>
         <div class="info-telnumber info">
           <label>手机</label>
-          <input type="text" v-model="telnumber" :placeholder="userData.telnumber">
+          <input type="text" v-model="telnumber" :placeholder="userData.telnumber" ref="telnumber">
         </div>
         <div class="info-website info">
           <label>网站</label>
-          <input type="text" v-model="website" :placeholder="userData.website">
+          <input type="text" v-model="website" :placeholder="userData.website" ref="website">
         </div>
         <div class="info-userinfo info">
           <label>个人简介</label>
-          <textarea rows="8" cols="40" v-model="userinfo" :placeholder="userData.userinfo"></textarea>
+          <textarea rows="8" cols="40" v-model="userinfo" :placeholder="userData.userinfo" ref="userinfo"></textarea>
         </div>
         <div class="info-avatar info">
           <label>头像</label>
@@ -61,7 +61,6 @@
 <script>
 import axios from '~/plugins/axios'
 import rightBar from '~/pages/RightBar'
-
 export default {
   data () {
     return {
@@ -76,7 +75,6 @@ export default {
   async asyncData (context) {
     return axios.get('/api/userinfo/' + context.store.state.auth_username)
       .then((res) => {
-        console.log(res.data)
         return {
           userData: res.data
         }
@@ -89,10 +87,10 @@ export default {
     onSubmit () {
       axios.post('/api/settings', {
         username: this.$store.state.auth_username,
-        email: this.email,
-        telnumber: this.telnumber,
-        website: this.website,
-        userinfo: this.userinfo,
+        email: this.email === '' ? this.$refs.email.placeholder : this.email,
+        telnumber: this.telnumber === '' ? this.$refs.telnumber.placeholder : this.telnumber,
+        website: this.website === '' ? this.$refs.website.placeholder : this.website,
+        userinfo: this.userinfo === '' ? this.$refs.userinfo.placeholder : this.userinfo,
         avatar: this.avatar
       })
     },
@@ -101,15 +99,11 @@ export default {
     },
     handleChange (e) {
       let files = e.target.files
-
       if (!files[0]) {
         return
       }
-
       let data = new FormData()
-
       data.append('image', files[0])
-
       axios.post(
         '/api/useravatar',
         data,

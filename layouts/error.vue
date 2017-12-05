@@ -23,7 +23,7 @@ export default {
       link: [{
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/404.ico'
+        href: './404.ico'
       }]
     }
   },
