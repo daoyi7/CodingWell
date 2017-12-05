@@ -1,30 +1,26 @@
 import {Router} from 'express'
 const fs = require('fs')
+const crypto = require('crypto')
+const path = require('path')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+
+      cb(null, new Date().getTime() + path.extname(file.originalname))
+    })
+  }
+})
+
+const upload = multer({ storage: storage })
 
 const router = Router()
 
-router.post('/useravatar', (req, res, next) => {
-  let post = ''
-  let time = new Date().getTime()
-  let img_data = './public/upload/img/' + time + '.jpg'
-
-  req.on('data', (chunk) => {
-    post += chunk
-  })
-  req.on('end', () => {
-
-    let data = JSON.parse(post)
-
-    console.log(data)
-    console.log(form)
-    // req.setEncoding("binary")
-    //
-    // fs.writeFile(img_data, data, "binary", (err) => {
-    //   if (err) throw err
-    //
-    //   console.log(123)
-    // })
-  })
+router.post('/useravatar', upload.single('image'), (req, res, next) => {
+  console.log(req.file)
 })
 
 export default router

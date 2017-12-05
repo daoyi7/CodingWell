@@ -9,7 +9,7 @@
           <span>设置</span>
         </p>
       </div>
-      <form class="cdw-update-info" action="" method="post" enctype="multipart/form-data" @submit.prevent="onSubmit">
+      <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
         <div class="info-id info">
           <p>
             <img src="~assets/img/codingwell.png">
@@ -95,18 +95,21 @@ export default {
       this.$refs.changeAvatar.click()
     },
     handleChange (e) {
-      const file = e.target.files[0]
+      let files = e.target.files
 
-      console.log(file)
-      this.avatar = file.name
-      axios.post('/api/useravatar', {
-        avatar_name: file.name,
-        avatar_size: file.size,
-        avatar_lastModifiedDate: file.lastModifiedDate,
-        avatar_lastModified: file.lastModified,
-        avatar_type: file.type,
-        avatar_webkitRelativePath: file.webkitRelativePath
-      })
+      if (!files[0]) {
+        return
+      }
+
+      let data = new FormData()
+
+      data.append('image', files[0])
+
+      axios.post(
+        '/api/useravatar',
+        data,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      )
     }
   }
 }
