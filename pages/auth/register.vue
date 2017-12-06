@@ -32,6 +32,10 @@ export default {
     return {
       username: '',
       password: '',
+      avatar: {
+        type: String,
+        default: './uploads/default.png'
+      },
       warn: ''
     }
   },
@@ -44,7 +48,8 @@ export default {
     onSubmit () {
       axios.post('/api/register', {
         username: this.username,
-        password: this.password
+        password: this.password,
+        avatar: this.avatar.default
       }).then((res) => {
         if (res.data.reg_status === -1) {
           // return false

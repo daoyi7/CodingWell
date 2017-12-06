@@ -21,7 +21,9 @@
     </nuxt-link>
     <div class="cdw-dashboard">
       <div class="user-data" v-if="this.$store.state.auth_state">
-        <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">{{this.$store.state.auth_username}}</nuxt-link>
+        <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
+          <img class="avatar" :src='data.auth_data.avatar'>
+        </nuxt-link>
         <nuxt-link class="setting" to="/settings">设置</nuxt-link>
         <span class="logout" @click="logout">登出</span>
       </div>
@@ -42,6 +44,11 @@
 import Cookies from 'js-cookie'
 
 export default {
+  data () {
+    return {
+      data: this.$store.state
+    }
+  },
   props: {
     username: {
       type: String,
@@ -50,12 +57,11 @@ export default {
   },
   methods: {
     logout () {
+      this.$router.push('/auth/login')
       Cookies.remove('username')
       Cookies.remove('auth_state')
       this.$store.commit('SET_USER')
       this.$store.commit('SET_STATUS')
-
-      this.$router.push('/auth/login')
     }
   }
 }
@@ -76,19 +82,32 @@ export default {
     align-items center
     justify-content space-between
     a
-      img
+      img.logo
         height: 3rem
         margin-right 1rem
         vertical-align middle
       svg
         vertical-align middle
     .cdw-dashboard
-      .username, .logout
+      .username
+        width 2.5rem
+        height 2.5rem
+        overflow hidden
+        border-radius 50%
+        display inline-block
+        vertical-align middle
+        margin-right 1rem
+        img.avatar
+          width 100%
+          height 100%
+      .logout
         padding .3rem .6rem
         color #fff
         cursor pointer
+        vertical-align middle
       .setting
         color #fff
+        vertical-align middle
       .login,.register
         color #fff
         font-size 1.4rem

@@ -58,7 +58,7 @@ export default {
           this.warn = '密码错误'
         } else if (res.data.login_status === -1) {
           this.$store.state.auth_state = false
-          this.warn = '用户名错误'
+          this.warn = '用户名不存在'
         }
       })
     }

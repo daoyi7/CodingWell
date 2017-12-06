@@ -1,6 +1,7 @@
 export const state = () => ({
   auth_state: null,
-  auth_username: null
+  auth_username: null,
+  auth_data: null
 })
 
 export const mutations = {
@@ -9,6 +10,9 @@ export const mutations = {
   },
   SET_USER (state, user) {
     state.auth_username = user || null
+  },
+  SET_USER_DATA (state, data) {
+    state.auth_data = data || null
   }
 }
 

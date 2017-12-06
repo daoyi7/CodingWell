@@ -46,8 +46,7 @@ router.post('/login', (req, res, next) => {
         })
       } else {
         res.send({
-          login_status: -1,
-          username: results[0].username
+          login_status: -1
         })
       }
     })

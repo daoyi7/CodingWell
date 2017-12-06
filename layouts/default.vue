@@ -9,12 +9,22 @@
 <script>
 import Header from '~/pages/Header'
 import Footer from '~/pages/Footer'
+// import Cookies from 'js-cookie'
+
 export default {
   data () {
     return {
       hf_is_show: true
     }
   },
+  // beforeMount () {
+  //   console.log(Cookies.get('auth_state'))
+  //   if (Cookies.get('auth_state')) {
+  //     console.log(1)
+  //   }
+  //   // this.$store.commit('SET_STATUS', Cookies.get('auth_state'))
+  //   // this.$store.commit('SET_USER', Cookies.get('username'))
+  // },
   components: {
     'cdw-header': Header,
     'cdw-footer': Footer

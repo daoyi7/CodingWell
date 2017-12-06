@@ -30,7 +30,7 @@ router.post('/register', (req, res, next) => {
 
     let sql_query = "SELECT username,password FROM user_table WHERE username='" + data.username + "'"
 
-    let sql_insert = 'INSERT INTO user_table (username, password, created_time) VALUES (?,?,?)'
+    let sql_insert = 'INSERT INTO user_table (username, password, avatar, created_time) VALUES (?,?,?,?)'
 
     connection.query(sql_query, (err, results, fields) => {
       if(err) {
@@ -47,7 +47,7 @@ router.post('/register', (req, res, next) => {
           reg_status: 1,
           username: data.username
         })
-        connection.query(sql_insert, [data.username, hashPsw, time], (error, result, fields) => {
+        connection.query(sql_insert, [data.username, hashPsw, data.avatar, time], (error, result, fields) => {
          if(error) throw error
         })
       }
