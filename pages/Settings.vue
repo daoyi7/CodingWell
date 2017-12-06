@@ -12,8 +12,8 @@
       <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
         <div class="info-id info">
           <p>
-            <img :src='userData.avatar'>
-            <span>CodingWell 第{{userData.id}}位用户</span>
+            <img :src='getUserData.avatar?getUserData.avatar:avatar'>
+            <span>CodingWell 第{{getUserData.id}}位用户</span>
           </p>
         </div>
         <div class="info-username info">
@@ -70,19 +70,22 @@ export default {
       website: '',
       birthday: '',
       userinfo: '',
-      avatar: ''
+      avatar: './uploads/default.png',
+      userData: []
     }
-  },
-  async asyncData (context) {
-    return axios.get('/api/userinfo/' + context.store.state.auth_username)
-      .then((res) => {
-        return {
-          userData: res.data
-        }
-      })
   },
   components: {
     'cdw-right-bar': rightBar
+  },
+  computed: {
+    getUserData () {
+      let store = this.$store
+      axios.get('/api/userinfo/' + store.state.auth_username)
+        .then((res) => {
+          this.userData = res.data
+        })
+      return this.userData
+    }
   },
   methods: {
     onSubmit () {

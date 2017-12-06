@@ -87,7 +87,6 @@ export default {
       Cookies.remove('auth_state')
       this.$store.commit('SET_USER')
       this.$store.commit('SET_STATUS')
-      this.$store.commit('SET_USER_DATA')
     }
   }
 }
