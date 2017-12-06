@@ -54,6 +54,10 @@
   - ~~[js-cookie](https://github.com/js-cookie/js-cookie)处理用户登录~~
   - ~~如果 ``auth_sate`` true 就直接登录成功并且重定向到主页~~
 
+
+- 2017.12.5
+  - ~~Header 部分用户登录完成显示用户头像~~
+
 <!-- ## Build Setup
 
 ``` bash

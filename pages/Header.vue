@@ -20,15 +20,14 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <div class="user-data" v-if="getUserState !== null">
-        {{getUserName}}
-        <!-- <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
-          <img class="avatar" :src='this.$store.state.auth_data.avatar'>
-        </nuxt-link> -->
+      <div class="user-data" v-if="getUserState">
+        <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
+          <img class="avatar" :src='getUserAvatar?getUserAvatar:avatar' :alt='getUserName'>
+        </nuxt-link>
         <nuxt-link class="setting" to="/settings">设置</nuxt-link>
         <span class="logout" @click="logout">登出</span>
       </div>
-      <div class="unlogin" v-if="getUserState == null">
+      <div class="unlogin" v-if="!getUserState">
         <nuxt-link class="login" to="/auth/login">
           <span>登录</span>
         </nuxt-link>
@@ -42,10 +41,15 @@
 </template>
 
 <script>
-// import axios from '~/plugins/axios'
+import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
 
 export default {
+  data () {
+    return {
+      avatar: './uploads/default.png'
+    }
+  },
   props: {
     username: {
       type: String,
@@ -55,16 +59,24 @@ export default {
   computed: {
     getUserName () {
       let store = this.$store
-      if (store.state.auth_username == null) {
+
+      if (store.state.auth_username === null) {
         store.commit('SET_USER', Cookies.get('username'))
+
+        return store.state.auth_username
       }
-      return store.state.auth_username
+    },
+    getUserAvatar () {
+      let store = this.$store
+      axios.get('/api/userinfo/' + store.state.auth_username)
+        .then((res) => {
+          this.avatar = res.data.avatar
+        })
+      return this.avatar
     },
     getUserState () {
       let store = this.$store
-      if (store.state.auth_state == null) {
-        store.commit('SET_STATUS', Cookies.get('auth_state'))
-      }
+      store.commit('SET_STATUS')
       return store.state.auth_state
     }
   },
