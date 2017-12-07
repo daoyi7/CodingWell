@@ -1,7 +1,7 @@
 <template>
-<div class="cdw-user-info cdw-wrap">
-  <div class="info-wrap-main">
-    <div class="info-wrap">
+<div class="cdw-user-settings cdw-wrap">
+  <div class="settings-wrap-main">
+    <div class="settings-wrap">
       <div class="cdw-user-header">
         <p class="crumbs">
           <nuxt-link to="/">CodingWell</nuxt-link>
@@ -9,49 +9,48 @@
           <span>设置</span>
         </p>
       </div>
-      <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
-        <div class="info-id info">
+      <form class="cdw-update-settings" action="" method="post" @submit.prevent="onSubmit">
+        <div class="settings-id settings">
           <p>
             <img :src='userData.avatar?userData.avatar:avatar'>
             <span>CodingWell 第{{userData.id}}位用户</span>
           </p>
         </div>
-        <div class="info-username info">
+        <div class="settings-username settings">
           <label>用户名</label>
           <span>{{userData.username}}</span>
         </div>
-        <div class="info-email info">
+        <div class="settings-email settings">
           <label>邮箱</label>
           <input type="email" v-model="email" :placeholder="userData.email" ref="email">
         </div>
-        <div class="info-telnumber info">
+        <div class="settings-telnumber settings">
           <label>手机</label>
           <input type="text" v-model="telnumber" :placeholder="userData.telnumber" ref="telnumber">
         </div>
-        <div class="info-website info">
+        <div class="settings-website settings">
           <label>网站</label>
           <input type="text" v-model="website" :placeholder="userData.website" ref="website">
         </div>
-        <div class="info-userinfo info">
+        <div class="settings-userinfo settings">
           <label>个人简介</label>
           <textarea rows="8" cols="40" v-model="userinfo" :placeholder="userData.userinfo" ref="userinfo"></textarea>
         </div>
-        <div class="info-avatar info">
+        <div class="settings-avatar settings">
           <label>头像</label>
-          <input type="file" class="info-avatar-input" ref="changeAvatar" @change="handleChange">
-          <div class="info-avatar-use" @click="changeAvatar" v-if="userData.avatar == ''">
+          <input type="file" class="settings-avatar-input" ref="changeAvatar" @change="handleChange">
+          <div class="settings-avatar-use" @click="changeAvatar" v-if="userData.avatar == ''">
             <img src='~assets/img/codingwell.png' v-if="avatar == ''">
             <img :src=avatar v-if="avatar !== ''">
           </div>
-          <div class="info-avatar-use" @click="changeAvatar" v-if="userData.avatar !== ''">
+          <div class="settings-avatar-use" @click="changeAvatar" v-if="userData.avatar !== ''">
             <img :src='userData.avatar' v-if="avatar == './uploads/default.png'">
             <img :src=avatar v-if="avatar !== './uploads/default.png'">
           </div>
         </div>
-        <div class="info-submit info">
+        <div class="settings-submit settings">
           <button type="submit" name="button">保存设置</button>
         </div>
-        {{uData.id}}
       </form>
     </div>
   </div>
@@ -71,12 +70,21 @@ export default {
       website: '',
       birthday: '',
       userinfo: '',
-      avatar: './uploads/default.png',
-      userData: [],
-      uData: []
+      avatar: '/uploads/default.png',
+      userData: []
     }
   },
-  mounted () {
+  // asyncData (context) {
+  //   console.log(context)
+  //   return axios.get('/api/userinfo/' + context.store.state.auth_username)
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       return {
+  //         userData: res.data
+  //       }
+  //     })
+  // },
+  beforeMount () {
     let store = this.$store
     axios.get('/api/userinfo/' + store.state.auth_username)
       .then((res) => {
@@ -120,12 +128,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.cdw-user-info
+.cdw-user-settings
   margin 0 auto
   display flex
-  .info-wrap-main
+  .settings-wrap-main
     flex-grow 3
-    .info-wrap
+    .settings-wrap
       margin 0
       padding 0
       width 98%
@@ -136,12 +144,12 @@ export default {
           font-size 1.4rem
           padding 1rem
           border-bottom 1px solid #fbfbfb
-      .cdw-update-info
-        .info
+      .cdw-update-settings
+        .settings
           padding 1rem 0
           display flex
           align-items center
-          &.info-id
+          &.settings-id
             padding 0
             width 100%
             height 3rem
@@ -155,11 +163,11 @@ export default {
                 margin-right .8rem
               span
                 vertical-align middle
-          &.info-username
+          &.settings-username
             span
               font-size 1.3rem
               padding-left .5rem
-          &.info-submit
+          &.settings-submit
             padding-left 5.8rem
             button
               width 6.5rem
@@ -186,12 +194,12 @@ export default {
           input
             height 2rem
             line-height 2rem
-            &.info-avatar-input
+            &.settings-avatar-input
               display none
           textarea
             resize none
             padding .5rem .5rem
-          .info-avatar-use
+          .settings-avatar-use
             width 4.5rem
             height 4.5rem
             overflow hidden

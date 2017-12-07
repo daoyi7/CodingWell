@@ -1,6 +1,10 @@
 <template>
-  <div class="user">
-    {{username}}
+  <div class="cdw-user-info cdw-wrap">
+    <div class="info-wrap-main">
+      {{userData.username}}
+      {{userData.id}}
+    </div>
+    <cdw-right-bar></cdw-right-bar>
   </div>
 </template>
 
@@ -22,7 +26,7 @@ export default {
   asyncData ({params, err}) {
     return axios.get('/api/userinfo/' + params.username)
       .then((res) => {
-        console.log(res)
+        console.log(res.data)
         return {
           userData: res.data
         }

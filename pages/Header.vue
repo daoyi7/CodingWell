@@ -52,7 +52,7 @@ import NoSSR from 'vue-no-ssr'
 export default {
   data () {
     return {
-      avatar: './uploads/default.png'
+      avatar: '/uploads/default.png'
     }
   },
   props: {

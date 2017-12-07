@@ -10,26 +10,20 @@ const connection = mysql.createConnection({
   password: ''
 })
 
-connection.query('select * from user_table', (err, results, fields) => {
-  if(err) {
-    console.log(err)
-  }
-  if(results) {
-    router.get('/userinfo', (req, res) => {
-      res.json(results)
+router.get('/userinfo/:username', (req, res, next) => {
+  let name = req.params.username
+
+  connection.escape(name)
+
+  if(name !== '') {
+
+    let sql = "SELECT * FROM user_table WHERE username='" + name + "'"
+
+    connection.query(sql, (err, results, fields) => {
+      res.json(results[0])
     })
-
-    router.get('/userinfo/:username', (req, res, next) => {
-      let usernameArray = []
-
-      for(let i=0;i<results.length;i++) {
-        usernameArray.push(results[i].username)
-      }
-
-      let reqUsernameIndex = usernameArray.indexOf(req.params.username)
-
-      res.json(results[reqUsernameIndex])
-    })
+  } else {
+    res.send(404)
   }
 })
 

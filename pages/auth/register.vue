@@ -34,7 +34,7 @@ export default {
       password: '',
       avatar: {
         type: String,
-        default: './uploads/default.png'
+        default: '/uploads/default.png'
       },
       warn: ''
     }
