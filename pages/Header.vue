@@ -20,25 +20,25 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <span v-if='state'>777</span>
-      <!-- <span v-if='!state'>888</span> -->
-      {{getUserState}}
-      {{getUserName}}
-      <!-- <div class="user-data" v-if="state">
-        <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
-          <img class="avatar" :src='getUserAvatar?getUserAvatar:avatar' :alt='getUserName'>
-        </nuxt-link>
-        <nuxt-link class="setting" to="/settings">设置</nuxt-link>
-        <span class="logout" @click="logout">登出</span>
-      </div> -->
-      <!-- <div class="unlogin" v-if="!state">
-        <nuxt-link class="login" to="/auth/login">
-          <span>登录</span>
-        </nuxt-link>
-        <nuxt-link class="register" to="/auth/register">
-          <span>注册</span>
-        </nuxt-link>
-      </div> -->
+      <no-ssr>
+        <div class="user-data" v-if="getUserState">
+          <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
+            <img class="avatar" :src='getUserAvatar?getUserAvatar:avatar' :alt='getUserName'>
+          </nuxt-link>
+          <nuxt-link class="setting" to="/settings">设置</nuxt-link>
+          <span class="logout" @click="logout">登出</span>
+        </div>
+      </no-ssr>
+      <no-ssr>
+        <div class="unlogin" v-if="!getUserState">
+          <nuxt-link class="login" to="/auth/login">
+            <span>登录</span>
+          </nuxt-link>
+          <nuxt-link class="register" to="/auth/register">
+            <span>注册</span>
+          </nuxt-link>
+        </div>
+      </no-ssr>
     </div>
   </header>
 </section>
@@ -47,12 +47,12 @@
 <script>
 import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
+import NoSSR from 'vue-no-ssr'
 
 export default {
   data () {
     return {
-      avatar: './uploads/default.png',
-      state: false
+      avatar: './uploads/default.png'
     }
   },
   props: {
@@ -82,19 +82,20 @@ export default {
     getUserState () {
       let store = this.$store
       store.commit('SET_STATUS', Boolean(Cookies.get('auth_state')))
-
-      console.log(store.state.auth_state)
-      this.a = store.state.auth_state
-      return this.a
+      return store.state.auth_state
     }
+  },
+  components: {
+    'no-ssr': NoSSR
   },
   methods: {
     logout () {
-      this.$router.push('/auth/login')
+      let store = this.$store
       Cookies.remove('username')
-      Cookies.set('auth_state', null)
-      this.$store.commit('SET_USER')
-      this.$store.commit('SET_STATUS')
+      Cookies.remove('auth_state')
+      store.commit('SET_USER')
+      store.commit('SET_STATUS')
+      this.$router.push('/auth/login')
     }
   }
 }

@@ -28,6 +28,7 @@
     "mysql": "^2.15.0",
     "nuxt": "^1.0.0-rc3",
     "source-map-support": "^0.4.15",
+    "vue-no-ssr": "^0.2.2",
     "vuex": "^3.0.1",
     "whatwg-fetch": "^2.0.3"
   },
