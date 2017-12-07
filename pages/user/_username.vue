@@ -1,54 +1,7 @@
 <template>
-<div class="cdw-user-info cdw-wrap">
-  <div class="info-wrap-main">
-    <div class="info-wrap">
-      <div class="cdw-user-header">
-        <p class="crumbs">
-          <nuxt-link to="/">CodingWell</nuxt-link>
-          &nbsp;›&nbsp;
-          <span>设置</span>
-        </p>
-      </div>
-      <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
-        <div class="info-id info">
-          <p>
-            <img src="~assets/img/codingwell.png">
-            <span>CodingWell 第{{userData.id}}位用户</span>
-          </p>
-        </div>
-        <div class="info-username info">
-          <label>用户名</label>
-          <span>{{username}}</span>
-        </div>
-        <div class="info-email info">
-          <label>邮箱</label>
-          <input type="email" v-model="email">
-        </div>
-        <div class="info-telnumber info">
-          <label>手机</label>
-          <input type="text" v-model="telnumber">
-        </div>
-        <div class="info-website info">
-          <label>网站</label>
-          <input type="text" v-model="website">
-        </div>
-        <div class="info-userinfo info">
-          <label>个人简介</label>
-          <textarea rows="8" cols="40" v-model="userinfo"></textarea>
-        </div>
-        <div class="info-avatar info">
-          <label>头像</label>
-          <label class="for-avatar" for="xFile">上传文件</label>
-          <input type="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);">
-        </div>
-        <div class="info-submit info">
-          <button type="submit" name="button">保存设置</button>
-        </div>
-      </form>
-    </div>
+  <div class="user">
+    {{username}}
   </div>
-  <cdw-right-bar></cdw-right-bar>
-</div>
 </template>
 
 <script>

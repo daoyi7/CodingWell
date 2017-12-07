@@ -12,8 +12,8 @@
       <form class="cdw-update-info" action="" method="post" @submit.prevent="onSubmit">
         <div class="info-id info">
           <p>
-            <img :src='getUserData.avatar?getUserData.avatar:avatar'>
-            <span>CodingWell 第{{getUserData.id}}位用户</span>
+            <img :src='userData.avatar?userData.avatar:avatar'>
+            <span>CodingWell 第{{userData.id}}位用户</span>
           </p>
         </div>
         <div class="info-username info">
@@ -44,13 +44,14 @@
             <img :src=avatar v-if="avatar !== ''">
           </div>
           <div class="info-avatar-use" @click="changeAvatar" v-if="userData.avatar !== ''">
-            <img :src='userData.avatar' v-if="avatar == ''">
-            <img :src=avatar v-if="avatar !== ''">
+            <img :src='userData.avatar' v-if="avatar == './uploads/default.png'">
+            <img :src=avatar v-if="avatar !== './uploads/default.png'">
           </div>
         </div>
         <div class="info-submit info">
           <button type="submit" name="button">保存设置</button>
         </div>
+        {{uData.id}}
       </form>
     </div>
   </div>
@@ -71,21 +72,19 @@ export default {
       birthday: '',
       userinfo: '',
       avatar: './uploads/default.png',
-      userData: []
+      userData: [],
+      uData: []
     }
+  },
+  mounted () {
+    let store = this.$store
+    axios.get('/api/userinfo/' + store.state.auth_username)
+      .then((res) => {
+        this.userData = res.data
+      })
   },
   components: {
     'cdw-right-bar': rightBar
-  },
-  computed: {
-    getUserData () {
-      let store = this.$store
-      axios.get('/api/userinfo/' + store.state.auth_username)
-        .then((res) => {
-          this.userData = res.data
-        })
-      return this.userData
-    }
   },
   methods: {
     onSubmit () {
@@ -113,7 +112,6 @@ export default {
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then((res) => {
-        console.log(res)
         this.avatar = './uploads/' + res.data.filename
       })
     }
