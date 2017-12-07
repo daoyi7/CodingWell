@@ -4,8 +4,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_STATUS (state) {
-    state.auth_state = true || false
+  SET_STATUS (state, status) {
+    state.auth_state = status || null
   },
   SET_USER (state, user) {
     state.auth_username = user || null

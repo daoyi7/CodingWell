@@ -20,7 +20,6 @@ router.post('/settings', (req, res, next) => {
   req.on('end', () => {
 
     let data = JSON.parse(post)
-    console.log(data)
 
     connection.escape(data)
 

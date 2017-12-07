@@ -20,21 +20,25 @@
           </svg>
     </nuxt-link>
     <div class="cdw-dashboard">
-      <div class="user-data" v-if="getUserState">
+      <span v-if='state'>777</span>
+      <!-- <span v-if='!state'>888</span> -->
+      {{getUserState}}
+      {{getUserName}}
+      <!-- <div class="user-data" v-if="state">
         <nuxt-link class="username" :to="{name: 'auth-username', params: { username: this.$store.state.auth_username }}">
           <img class="avatar" :src='getUserAvatar?getUserAvatar:avatar' :alt='getUserName'>
         </nuxt-link>
         <nuxt-link class="setting" to="/settings">设置</nuxt-link>
         <span class="logout" @click="logout">登出</span>
-      </div>
-      <div class="unlogin" v-if="!getUserState">
+      </div> -->
+      <!-- <div class="unlogin" v-if="!state">
         <nuxt-link class="login" to="/auth/login">
           <span>登录</span>
         </nuxt-link>
         <nuxt-link class="register" to="/auth/register">
           <span>注册</span>
         </nuxt-link>
-      </div>
+      </div> -->
     </div>
   </header>
 </section>
@@ -47,7 +51,8 @@ import Cookies from 'js-cookie'
 export default {
   data () {
     return {
-      avatar: './uploads/default.png'
+      avatar: './uploads/default.png',
+      state: false
     }
   },
   props: {
@@ -76,15 +81,18 @@ export default {
     },
     getUserState () {
       let store = this.$store
-      store.commit('SET_STATUS')
-      return store.state.auth_state
+      store.commit('SET_STATUS', Boolean(Cookies.get('auth_state')))
+
+      console.log(store.state.auth_state)
+      this.a = store.state.auth_state
+      return this.a
     }
   },
   methods: {
     logout () {
       this.$router.push('/auth/login')
       Cookies.remove('username')
-      Cookies.remove('auth_state')
+      Cookies.set('auth_state', null)
       this.$store.commit('SET_USER')
       this.$store.commit('SET_STATUS')
     }
