@@ -5,7 +5,7 @@
       <h2>加入 <nuxt-link to="/">CodingWell</nuxt-link></h2>
       <form class="cdw-register-main" action="/auth/login" method="post" @submit.prevent="onSubmit">
         <div class="cdw-register-username">
-          <input type="text" name="username" placeholder="用户名" v-model="username">
+          <input v-focus type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-register-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
@@ -33,8 +33,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from '~/plugins/axios'
 import Alert from '~/pages/Alert'
+
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
 
 export default {
   data () {

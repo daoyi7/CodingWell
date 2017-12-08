@@ -5,7 +5,7 @@
       <h2>欢迎回来</h2>
       <form class="cdw-login-main" action="/" method="post" @submit.prevent="onSubmit">
         <div class="cdw-login-username">
-          <input type="text" name="username" placeholder="用户名" v-model="username">
+          <input v-focus type="text" name="username" placeholder="用户名" v-model="username">
         </div>
         <div class="cdw-login-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
@@ -25,8 +25,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
+
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
 
 export default {
   data () {

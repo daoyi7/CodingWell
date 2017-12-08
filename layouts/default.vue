@@ -21,7 +21,7 @@ export default {
     'cdw-header': Header,
     'cdw-footer': Footer
   },
-  mounted () {
+  created () {
     let routeNameArray = ['auth-login', 'auth-register', null]
     let routeNameNullArray = ['Header', 'Footer', 'Home-Content', 'RightBar', 'Alert']
     let _thisRouteName = this.$router.currentRoute.name
