@@ -26,7 +26,6 @@ export default {
   asyncData ({params, err}) {
     return axios.get('/api/userinfo/' + params.username)
       .then((res) => {
-        console.log(res.data)
         return {
           userData: res.data
         }

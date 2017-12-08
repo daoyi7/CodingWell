@@ -84,7 +84,7 @@ export default {
   //       }
   //     })
   // },
-  beforeMount () {
+  beforeCreate () {
     let store = this.$store
     axios.get('/api/userinfo/' + store.state.auth_username)
       .then((res) => {

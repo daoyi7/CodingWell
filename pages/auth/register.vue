@@ -10,8 +10,8 @@
         <div class="cdw-register-psw">
           <input type="password" name="password" placeholder="密码" v-model="password">
         </div>
-        <div class="cdw-register-warn" v-if="this.warn !== ''">
-          <p>{{this.warn}}</p>
+        <div class="cdw-register-warn" v-if="warn !== ''">
+          <p>{{warn}}</p>
         </div>
         <button type="submit" name="button">注册</button>
         <div class="cdw-go-login">
@@ -46,18 +46,45 @@ export default {
   },
   methods: {
     onSubmit () {
-      axios.post('/api/register', {
-        username: this.username,
-        password: this.password,
-        avatar: this.avatar.default
-      }).then((res) => {
-        if (res.data.reg_status === -1) {
-          // return false
-          this.warn = '用户名已存在'
-        } else if (res.data.reg_status === 1) {
-          this.$router.push('/auth/login')
-        }
-      })
+      if (this.warn === '') {
+        axios.post('/api/register', {
+          username: this.username,
+          password: this.password,
+          avatar: this.avatar.default
+        }).then((res) => {
+          if (res.data.reg_status === -1) {
+            // return false
+            this.warn = '用户名已存在'
+          } else if (res.data.reg_status === 1) {
+            this.$router.push('/auth/login')
+          }
+        })
+      } else {
+        alert(this.warn)
+      }
+    }
+  },
+  watch: {
+    username: function (val) {
+      const Reg = new RegExp('[\u4e00-\u9fa5]')
+
+      if (Reg.test(val)) {
+        this.warn = '用户名请使用英文或数字'
+      } else {
+        this.warn = ''
+      }
+    },
+    password: function (val) {
+      const len = val.length
+      const Reg = new RegExp('\b')
+
+      console.log(Reg)
+
+      if (len < 10) {
+        this.warn = '请设置密码为十位数以上'
+      } else {
+        this.warn = ''
+      }
     }
   }
 }
