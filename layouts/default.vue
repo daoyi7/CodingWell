@@ -23,7 +23,7 @@ export default {
   },
   mounted () {
     let routeNameArray = ['auth-login', 'auth-register', null]
-    let routeNameNullArray = ['Header', 'Footer', 'Home-Content', 'RightBar']
+    let routeNameNullArray = ['Header', 'Footer', 'Home-Content', 'RightBar', 'Alert']
     let _thisRouteName = this.$router.currentRoute.name
 
     if (routeNameArray.indexOf(_thisRouteName) !== -1) {

@@ -21,11 +21,20 @@
         </div>
       </form>
     </div>
+    <transition name="fade">
+      <cdw-alert
+        v-if='alert_show'
+        :content='alert_warn_content'
+        :show='alert_show'
+        @toggleShow="toggleShow"
+      ></cdw-alert>
+    </transition>
   </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import Alert from '~/pages/Alert'
 
 export default {
   data () {
@@ -36,7 +45,9 @@ export default {
         type: String,
         default: '/uploads/default.png'
       },
-      warn: ''
+      warn: '',
+      alert_warn_content: '',
+      alert_show: false
     }
   },
   head () {
@@ -44,47 +55,73 @@ export default {
       title: 'CodingWell | 注册'
     }
   },
+  components: {
+    'cdw-alert': Alert
+  },
   methods: {
     onSubmit () {
       if (this.warn === '') {
-        axios.post('/api/register', {
-          username: this.username,
-          password: this.password,
-          avatar: this.avatar.default
-        }).then((res) => {
-          if (res.data.reg_status === -1) {
-            // return false
-            this.warn = '用户名已存在'
-          } else if (res.data.reg_status === 1) {
-            this.$router.push('/auth/login')
-          }
-        })
+        if (this.username !== '' && this.password !== '') {
+          axios.post('/api/register', {
+            username: this.username,
+            password: this.password,
+            avatar: this.avatar.default
+          }).then((res) => {
+            if (res.data.reg_status === -1) {
+              // return false
+              this.warn = '用户名已存在'
+            } else if (res.data.reg_status === 1) {
+              this.$router.push('/auth/login')
+            }
+          })
+        } else {
+          this.warn = '用户名或密码不能为空'
+        }
       } else {
-        alert(this.warn)
+        this.alert_warn_content = this.warn
+        this.alert_show = true
       }
+    },
+    toggleShow () {
+      this.alert_show = false
     }
   },
   watch: {
     username: function (val) {
       const Reg = new RegExp('[\u4e00-\u9fa5]')
+      const RegSemicon = val.search(/[ |~|`|!|@|#|$|%|^|&|*|(|)|-|+|=|?|"|“|”|;|:|；|：]/g)
 
-      if (Reg.test(val)) {
-        this.warn = '用户名请使用英文或数字'
+      if (RegSemicon === -1) {
+        if (Reg.test(val)) {
+          this.warn = '用户名请使用英文或数字'
+        } else {
+          this.warn = ''
+        }
+      } else if (RegSemicon !== -1) {
+        this.warn = '用户名不能包含符号'
       } else {
         this.warn = ''
       }
     },
     password: function (val) {
       const len = val.length
-      const Reg = new RegExp('\b')
 
-      console.log(Reg)
-
-      if (len < 10) {
-        this.warn = '请设置密码为十位数以上'
+      if (val.search(/ /g) === -1) {
+        if (len < 10) {
+          this.warn = '请设置密码为十位数以上'
+        } else {
+          this.warn = ''
+        }
+      } else if (val.search(/ /g) !== -1) {
+        this.warn = '密码不能包含空格'
       } else {
         this.warn = ''
       }
+    },
+    alert_show: function (val) {
+      setTimeout(() => {
+        this.alert_show = false
+      }, 5000)
     }
   }
 }
@@ -165,4 +202,8 @@ export default {
         text-align right
         a:hover
           text-decoration underline
+  .fade-enter-active, .fade-leave-active
+    transition all .5s
+  .fade-enter, .fade-leave-to
+    opacity 0
 </style>
