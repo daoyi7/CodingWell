@@ -15,6 +15,9 @@
         </div>
         <button type="submit" name="button">登录</button>
         <div class="cdw-go-register">
+          <nuxt-link to="/auth/forget">
+            <span>忘记密码？</span>
+          </nuxt-link>
           <nuxt-link to="/auth/register">
             <span>还没有账号？立即注册</span>
           </nuxt-link>
@@ -130,7 +133,8 @@ export default {
         text-align center
       .cdw-go-register
         padding-top 1rem
-        text-align right
+        display flex
+        justify-content space-between
         a:hover
           text-decoration underline
 </style>
