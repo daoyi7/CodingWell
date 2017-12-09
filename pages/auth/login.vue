@@ -167,4 +167,8 @@ export default {
         justify-content space-between
         a:hover
           text-decoration underline
+  .fade-enter-active, .fade-leave-active
+    transition all .5s ease-in-out
+  .fade-enter, .fade-leave-to
+    opacity 0
 </style>
