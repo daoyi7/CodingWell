@@ -22,7 +22,7 @@ export default {
     'cdw-footer': Footer
   },
   created () {
-    let routeNameArray = ['auth-login', 'auth-register', null]
+    let routeNameArray = ['auth-login', 'auth-register', 'auth-forget', null]
     let routeNameNullArray = ['Header', 'Footer', 'Home-Content', 'RightBar', 'Alert']
     let _thisRouteName = this.$router.currentRoute.name
 
@@ -39,6 +39,8 @@ export default {
       if (to.name === 'auth-login') {
         this.hf_is_show = false
       } else if (to.name === 'auth-register') {
+        this.hf_is_show = false
+      } else if (to.name === 'auth-forget') {
         this.hf_is_show = false
       } else if (to.name === null) {
         this.hf_is_show = false

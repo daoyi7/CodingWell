@@ -21,7 +21,7 @@ router.post('/register', (req, res, next) => {
 
     let data = JSON.parse(post)
 
-    let saltPsw = bcrypt.genSaltSync(10);
+    let saltPsw = bcrypt.genSaltSync(10)
     let hashPsw = bcrypt.hashSync(data.password, saltPsw)
 
     let time = new Date()

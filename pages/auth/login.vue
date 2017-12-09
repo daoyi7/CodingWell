@@ -66,9 +66,13 @@ export default {
           this.$store.state.auth_state = false
 
           this.warn = '密码错误'
+
+          return false
         } else if (res.data.login_status === -1) {
           this.$store.state.auth_state = false
           this.warn = '用户名不存在'
+
+          return false
         }
       })
     }

@@ -83,10 +83,14 @@ export default {
           })
         } else {
           this.warn = '用户名或密码不能为空'
+
+          return false
         }
       } else {
         this.alert_warn_content = this.warn
         this.alert_show = true
+
+        return false
       }
     },
     toggleShow () {
