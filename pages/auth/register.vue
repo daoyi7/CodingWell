@@ -25,8 +25,6 @@
       <cdw-alert
         v-if='alert_show'
         :content='alert_warn_content'
-        :show='alert_show'
-        @toggleShow="toggleShow"
       ></cdw-alert>
     </transition>
   </div>
@@ -92,9 +90,6 @@ export default {
 
         return false
       }
-    },
-    toggleShow () {
-      this.alert_show = false
     }
   },
   watch: {

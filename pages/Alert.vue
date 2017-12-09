@@ -21,11 +21,11 @@ export default {
 .cdw-alert
   position fixed
   top 1.5rem
-  right 0
+  right 1.5rem
   z-index 9999
   .cdw-alert-content
     padding 1.6rem
-    border-radius .6rem
+    border-radius .3rem
     color #fff
     border 1px solid rgba(239, 186, 174, 0.9)
     background rgba(232, 111, 108, 0.38)
