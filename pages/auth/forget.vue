@@ -107,12 +107,10 @@ export default {
         this.warn = ''
       }
     },
-    watch: {
-      alert_show: function (val) {
-        setTimeout(() => {
-          this.alert_show = false
-        }, 5000)
-      }
+    alert_show: function (val) {
+      setTimeout(() => {
+        this.alert_show = false
+      }, 5000)
     }
   }
 }

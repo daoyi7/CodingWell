@@ -25,8 +25,9 @@ export default {
   z-index 9999
   .cdw-alert-content
     padding 1.6rem
+    letter-spacing .1rem
     border-radius .3rem
-    color #fff
-    border 1px solid rgba(239, 186, 174, 0.9)
-    background rgba(232, 111, 108, 0.38)
+    color rgba(229,57,53,0.8)
+    background rgba(255, 255, 255, 0.95)
+    box-shadow .1rem .1rem .6rem rgba(0, 0, 0, 0.2)
 </style>
