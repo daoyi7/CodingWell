@@ -44,8 +44,8 @@
             <img :src=avatar v-if="avatar !== ''">
           </div>
           <div class="settings-avatar-use" @click="changeAvatar" v-if="userData.avatar !== ''">
-            <img :src='userData.avatar' v-if="avatar == './uploads/default.png'">
-            <img :src=avatar v-if="avatar !== './uploads/default.png'">
+            <img :src='userData.avatar' v-if="avatar == '/uploads/default.png'">
+            <img :src=avatar v-if="avatar !== '/uploads/default.png'">
           </div>
         </div>
         <div class="settings-submit settings">
@@ -74,16 +74,6 @@ export default {
       userData: []
     }
   },
-  // asyncData (context) {
-  //   console.log(context)
-  //   return axios.get('/api/userinfo/' + context.store.state.auth_username)
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       return {
-  //         userData: res.data
-  //       }
-  //     })
-  // },
   beforeCreate () {
     let store = this.$store
     axios.get('/api/userinfo/' + store.state.auth_username)
@@ -158,6 +148,7 @@ export default {
               padding-left 5.8rem
               img
                 width 1.8rem
+                height 1.8rem
                 border-radius 50%
                 vertical-align middle
                 margin-right .8rem
