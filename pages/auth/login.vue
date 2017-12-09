@@ -24,6 +24,12 @@
         </div>
       </form>
     </div>
+    <transition name="fade">
+      <cdw-alert
+        v-if='alert_show'
+        :content='alert_warn_content'
+      ></cdw-alert>
+    </transition>
   </div>
 </template>
 
@@ -31,6 +37,7 @@
 import Vue from 'vue'
 import axios from '~/plugins/axios'
 import Cookies from 'js-cookie'
+import Alert from '~/pages/Alert'
 
 Vue.directive('focus', {
   inserted: function (el) {
@@ -43,7 +50,9 @@ export default {
     return {
       username: '',
       password: '',
-      warn: ''
+      warn: '',
+      alert_warn_content: '',
+      alert_show: false
     }
   },
   head () {
@@ -51,30 +60,47 @@ export default {
       title: 'CodingWell | 登录'
     }
   },
+  components: {
+    'cdw-alert': Alert
+  },
   methods: {
     onSubmit () {
-      axios.post('/api/login', {
-        username: this.username,
-        password: this.password
-      }).then((res) => {
-        if (res.data.login_status === 1) {
-          Cookies.set('username', res.data.username, { expires: 180 }, { path: '' })
-          Cookies.set('auth_state', true, { expires: 180 }, { path: '' })
+      if (this.warn === '') {
+        axios.post('/api/login', {
+          username: this.username,
+          password: this.password
+        }).then((res) => {
+          if (res.data.login_status === 1) {
+            Cookies.set('username', res.data.username, { expires: 180 }, { path: '' })
+            Cookies.set('auth_state', true, { expires: 180 }, { path: '' })
 
-          this.$router.push('/')
-        } else if (res.data.login_status === 0) {
-          this.$store.state.auth_state = false
+            this.$router.push('/')
+          } else if (res.data.login_status === 0) {
+            this.$store.state.auth_state = false
 
-          this.warn = '密码错误'
+            this.warn = '密码错误'
 
-          return false
-        } else if (res.data.login_status === -1) {
-          this.$store.state.auth_state = false
-          this.warn = '用户名不存在'
+            return false
+          } else if (res.data.login_status === -1) {
+            this.$store.state.auth_state = false
+            this.warn = '用户名不存在'
 
-          return false
-        }
-      })
+            return false
+          }
+        })
+      } else {
+        this.alert_warn_content = this.warn
+        this.alert_show = true
+
+        return false
+      }
+    }
+  },
+  watch: {
+    alert_show: function (val) {
+      setTimeout(() => {
+        this.alert_show = false
+      }, 5000)
     }
   }
 }

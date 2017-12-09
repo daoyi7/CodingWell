@@ -48,18 +48,15 @@ router.post('/forget', (req, res, next) => {
 
         bcrypt.compare(data.old_password, results[0].password, (err, resb) => {
           if(resb === true) {
-            console.log("密码对了")
             // 密码正确
             connection.query(sql_insert, sql_psw_data, (error, result, fields) => {
               if(error) throw error
-              console.log("修改成功")
               res.send({
                 forget_status: 1,
                 username: results[0].username
               })
             })
           } else {
-            console.log("密码错了")
             // 密码错误
             res.send({
               forget_status: 0,
@@ -68,7 +65,6 @@ router.post('/forget', (req, res, next) => {
           }
         })
       } else {
-        console.log("不存在")
         // 用户名不存在
         res.send({
           forget_status: -1,

@@ -24,13 +24,19 @@
         </div>
       </form>
     </div>
+    <transition name="fade">
+      <cdw-alert
+        v-if='alert_show'
+        :content='alert_warn_content'
+      ></cdw-alert>
+    </transition>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import axios from '~/plugins/axios'
-// import Cookies from 'js-cookie'
+import Alert from '~/pages/Alert'
 
 Vue.directive('focus', {
   inserted: function (el) {
@@ -44,7 +50,9 @@ export default {
       username: '',
       old_password: '',
       new_password: '',
-      warn: ''
+      warn: '',
+      alert_warn_content: '',
+      alert_show: false
     }
   },
   head () {
@@ -52,26 +60,35 @@ export default {
       title: 'CodingWell | 忘记密码'
     }
   },
+  components: {
+    'cdw-alert': Alert
+  },
   methods: {
     onSubmit () {
-      axios.post('/api/forget', {
-        username: this.username,
-        old_password: this.old_password,
-        new_password: this.new_password
-      }).then((res) => {
-        console.log(res.data)
-        if (res.data.forget_status === 1) {
-          this.$router.push('/auth/login')
-        } else if (res.data.forget_status === 0) {
-          this.warn = '旧密码错误'
+      if (this.warn === '') {
+        axios.post('/api/forget', {
+          username: this.username,
+          old_password: this.old_password,
+          new_password: this.new_password
+        }).then((res) => {
+          if (res.data.forget_status === 1) {
+            this.$router.push('/auth/login')
+          } else if (res.data.forget_status === 0) {
+            this.warn = '旧密码错误'
 
-          return false
-        } else if (res.data.forget_status === -1) {
-          this.warn = '用户名不存在'
+            return false
+          } else if (res.data.forget_status === -1) {
+            this.warn = '用户名不存在'
 
-          return false
-        }
-      })
+            return false
+          }
+        })
+      } else {
+        this.alert_warn_content = this.warn
+        this.alert_show = true
+
+        return false
+      }
     }
   },
   watch: {
@@ -88,6 +105,13 @@ export default {
         this.warn = '新密码不能包含空格'
       } else {
         this.warn = ''
+      }
+    },
+    watch: {
+      alert_show: function (val) {
+        setTimeout(() => {
+          this.alert_show = false
+        }, 5000)
       }
     }
   }
