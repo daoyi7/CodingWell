@@ -132,5 +132,5 @@ export default {
           font-size 1.4rem
           &.tabs-active
             font-weight 700
-            border-bottom 1px solid #000
+            border-bottom 1px solid #76d067
 </style>

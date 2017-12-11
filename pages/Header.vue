@@ -22,7 +22,7 @@
     <div class="cdw-dashboard">
       <no-ssr>
         <div class="user-data" v-if="getUserState">
-          <nuxt-link class="username" :to="{name: 'user-username', params: { username: this.$store.state.auth_username }}">
+          <nuxt-link class="username" :to="{name: 'u-username', params: { username: this.$store.state.auth_username }}">
             <img class="avatar" :src='getUserAvatar?getUserAvatar:avatar' :alt='getUserName'>
           </nuxt-link>
           <nuxt-link class="setting" to="/settings">设置</nuxt-link>
