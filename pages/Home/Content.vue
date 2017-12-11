@@ -55,7 +55,6 @@ export default {
         width 98%
         list-style none
         background #fff
-        border-radius .4rem
         .content
           .content-item
             display flex

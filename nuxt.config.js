@@ -23,7 +23,8 @@ module.exports = {
     }]
   },
   css: [
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    '~/assets/css/iconfont.css'
   ],
   loading: {
     color: '#54b743'

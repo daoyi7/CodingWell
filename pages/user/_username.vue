@@ -1,8 +1,32 @@
 <template>
   <div class="cdw-user-info cdw-wrap">
     <div class="info-wrap-main">
-      {{userData.username}}
-      {{userData.id}}
+      <div class="info-wrap">
+        <div class="info-header">
+          <div class="info-avatar">
+            <img :src="userData.avatar?userData.avatar:vatar">
+          </div>
+          <div class="info-profile">
+            <h2>{{userData.username}}</h2>
+            <p>CodingWell第{{userData.id}}位会员，加入于{{userData.created_time | createdTime}}</p>
+          </div>
+        </div>
+        <div class="info-others">
+          <a :href="userData.website" target="_blank">
+            <i class="icon iconfont icon-link5"></i>
+            <span>{{userData.website}}</span>
+          </a>
+        </div>
+      </div>
+      <div class="user-posts">
+        <div class="tabs">
+          <span class="tabs-active">发布的主题</span>
+          <span>发布的回复</span>
+        </div>
+        <div class="posts-lists">
+
+        </div>
+      </div>
     </div>
     <cdw-right-bar></cdw-right-bar>
   </div>
@@ -20,7 +44,8 @@ export default {
       telnumber: '',
       website: '',
       birthday: '',
-      userinfo: ''
+      userinfo: '',
+      avatar: '/uploads/default.png'
     }
   },
   asyncData ({params, err}) {
@@ -30,6 +55,11 @@ export default {
           userData: res.data
         }
       })
+  },
+  filters: {
+    createdTime: function (val) {
+      return new Date(val).toLocaleDateString()
+    }
   },
   components: {
     'cdw-right-bar': RightBar
@@ -58,57 +88,48 @@ export default {
       margin 0
       padding 0
       width 98%
-      background #fff
-      border-radius .4rem
-      .cdw-user-header
-        .crumbs
+      .info-header
+        display flex
+        padding 1rem 1rem .5rem
+        background #fff
+        .info-avatar
+          flex 0 0 5rem
+          height 5rem
+          border .2rem solid #fff
+          border-radius .3rem
+          overflow hidden
+          img
+           width 100%
+       .info-profile
+        padding-left 2rem
+        h2
+          font-size 1.8rem
+          padding-top .5rem
+          line-height 3rem
+        p
+          color #657786
+          letter-spacing .08rem
+      .info-others
+        border-top 1px solid #fbfbfb
+        padding .8rem 1rem
+        background #fff
+        a
           font-size 1.4rem
-          padding 1rem
-          border-bottom 1px solid #fbfbfb
-      .cdw-update-info
-        .info
-          padding 1rem 0
-          display flex
-          align-items center
-          &.info-id
-            padding 0
-            width 100%
-            height 3rem
-            line-height 3rem
-            p
-              padding-left 5.8rem
-              img
-                width 1.8rem
-                border-radius 50%
-                vertical-align middle
-                margin-right .8rem
-              span
-                vertical-align middle
-          &.info-submit
-            padding-left 5.8rem
-            button
-              width 6.5rem
-              height 2.5rem
-              border none
-              background #76d067
-              color #fff
-              border-radius .3rem
-          label
-            flex 0 0 5rem
-            padding-right .8rem
-            text-align right
-            &.for-avatar
-              text-align center
-              padding .4rem .8rem
-              background #76d067
-              color #fff
-              border-radius .3rem
-          input
-            height 2rem
-          textarea
-            resize none
-          input, textarea
-            border 1px solid #989898
-            border-radius .3rem
-            padding 0 .5rem
+          text-decoration underline
+    .user-posts
+      width 98%
+      height 50rem
+      margin 1rem 0 0 0
+      background #fff
+      .tabs
+        border-bottom 1px solid #fbfbfb
+        span
+          padding 0 1.5rem
+          display inline-block
+          line-height 3rem
+          color #76d067
+          font-size 1.4rem
+          &.tabs-active
+            font-weight 700
+            border-bottom 1px solid #76d067
 </style>

@@ -6,24 +6,27 @@
       </div>
       <div class="box-user">
         <nuxt-link to="/settings">
-          <img :src="avatar">
+          <img :src='avatar'>
         </nuxt-link>
         <p class="username">{{username}}</p>
         <p class="usename">@<b>{{username}}</b></p>
       </div>
       <div class="box-profile">
         <nuxt-link to="/">
-          <span class="tab">粉丝</span>
+          <span class="tab">主题</span>
           <span class="num">999+</span>
         </nuxt-link>
         <nuxt-link to="/">
-          <span class="tab">粉丝</span>
+          <span class="tab">回复</span>
           <span class="num">999+</span>
         </nuxt-link>
         <nuxt-link to="/">
-          <span class="tab">粉丝</span>
+          <span class="tab">收藏</span>
           <span class="num">999+</span>
         </nuxt-link>
+      </div>
+      <div class="box-new">
+        <nuxt-link to="/"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
       </div>
     </div>
   </section>
@@ -44,7 +47,6 @@ export default {
     const store = this.$store.state
 
     if (store.auth_state) {
-      console.log(store)
       this.username = store.auth_username
 
       axios.get('/api/userinfo/' + store.auth_username)
@@ -63,8 +65,7 @@ export default {
   overflow hidden
   .box
     background #fff
-    border-radius .4rem
-    box-shadow 0 0.2rem 0.3rem rgba(0, 0, 0, 0.1)
+    box-shadow 0 0.2rem 0.2rem rgba(0, 0, 0, 0.1)
     .box-bg
       width 100%
       height 9rem
@@ -81,8 +82,8 @@ export default {
         position absolute
         top -2.3rem
         left 1.5rem
-        width 6rem
-        height 6rem
+        width 5rem
+        height 5rem
         border-radius 50%
         border .5rem solid #fff
         overflow hidden
@@ -94,7 +95,7 @@ export default {
         &.username
           font-size 1.8rem
           font-weight 700
-          line-height 2.5rem
+          line-height 2.1rem
         &.usename
           font-size 1.2rem
           color #657786
@@ -129,4 +130,10 @@ export default {
             font-size 1.7rem
             font-weight 700
             padding-top .3rem
+    .box-new
+      padding .2rem 1.6rem 1rem
+      a
+        i
+          margin-right .3rem
+          font-size .8rem
 </style>

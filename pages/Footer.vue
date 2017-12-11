@@ -14,4 +14,6 @@ export default {
 footer
   background #fff
   margin-top 2rem
+  padding 2rem 0
+  text-align center
 </style>
