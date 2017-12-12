@@ -128,11 +128,11 @@ export default {
       padding 0
       width 98%
       background #fff
-      border-radius .4rem
+      overflow hidden
       .cdw-user-header
         .crumbs
           font-size 1.4rem
-          padding 1rem
+          padding .6rem 1rem
           border-bottom 1px solid #fbfbfb
       .cdw-update-settings
         .settings

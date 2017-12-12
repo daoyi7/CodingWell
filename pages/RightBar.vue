@@ -26,7 +26,7 @@
         </nuxt-link>
       </div>
       <div class="box-new">
-        <nuxt-link to="/"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
+        <nuxt-link to="/new"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
       </div>
     </div>
   </section>

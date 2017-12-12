@@ -55,6 +55,7 @@ export default {
         width 98%
         list-style none
         background #fff
+        overflow hidden
         .content
           .content-item
             display flex

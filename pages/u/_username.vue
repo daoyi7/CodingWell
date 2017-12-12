@@ -3,15 +3,24 @@
     <div class="info-wrap-main">
       <div class="info-wrap">
         <div class="info-header">
-          <div class="info-avatar">
-            <img :src="userData.avatar?userData.avatar:vatar">
+          <div class="info-header-crumbs">
+            <p class="crumbs">
+              <nuxt-link to="/">CodingWell</nuxt-link>
+              &nbsp;›&nbsp;
+              <span>{{userData.username}}</span>
+            </p>
           </div>
-          <div class="info-profile">
-            <h2>{{userData.username}}</h2>
-            <p>CodingWell第{{userData.id}}位会员，加入于{{userData.created_time | createdTime}}</p>
+          <div class="info-header-main">
+            <div class="info-avatar">
+              <img :src="userData.avatar?userData.avatar:vatar">
+            </div>
+            <div class="info-profile">
+              <h2>{{userData.username}}</h2>
+              <p>CodingWell第{{userData.id}}位会员，加入于{{userData.created_time | createdTime}}</p>
+            </div>
           </div>
         </div>
-        <div class="info-others">
+        <div class="info-others" v-if='userData.website'>
           <a :href="userData.website" target="_blank">
             <i class="icon iconfont icon-link5"></i>
             <span>{{userData.website}}</span>
@@ -88,18 +97,25 @@ export default {
       margin 0
       padding 0
       width 98%
+      overflow hidden
       .info-header
-        display flex
-        padding 1rem 1rem .5rem
         background #fff
-        .info-avatar
-          flex 0 0 5rem
-          height 5rem
-          border .2rem solid #fff
-          border-radius .3rem
-          overflow hidden
-          img
-           width 100%
+        .info-header-crumbs
+          .crumbs
+            font-size 1.4rem
+            padding .6rem 1rem
+            border-bottom 1px solid #fbfbfb
+        .info-header-main
+          display flex
+          padding 1rem 1rem
+          .info-avatar
+            flex 0 0 5rem
+            height 5rem
+            border .2rem solid #fff
+            border-radius .3rem
+            overflow hidden
+            img
+             width 100%
        .info-profile
         padding-left 2rem
         h2
