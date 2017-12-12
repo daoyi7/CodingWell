@@ -1,6 +1,5 @@
 import {Router} from 'express'
 const router = Router()
-const http = require('')
 const mysql = require('mysql')
 const bcrypt = require('bcryptjs')
 

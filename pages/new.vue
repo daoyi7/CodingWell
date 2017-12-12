@@ -23,7 +23,7 @@
               ></textarea>
           </div>
           <div class="new-post">
-            <button type="button">发布主题</button>
+            <button type="submit">发布主题</button>
           </div>
         </form>
       </div>
@@ -33,11 +33,17 @@
 </template>
 
 <script>
+// import axios from '~/plugins/axios'
 import rightBar from '~/pages/RightBar'
 
 export default {
   components: {
     'cdw-right-bar': rightBar
+  },
+  methods: {
+    onSubmit () {
+      console.log(1)
+    }
   }
 }
 </script>
