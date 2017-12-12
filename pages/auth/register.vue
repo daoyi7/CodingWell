@@ -100,6 +100,8 @@ export default {
       if (RegSemicon === -1) {
         if (Reg.test(val)) {
           this.warn = '用户名请使用英文或数字'
+        } else if (val.length > 1000) {
+          this.warn = '已达到用户名长度上限制'
         } else {
           this.warn = ''
         }
@@ -115,6 +117,8 @@ export default {
       if (val.search(/ /g) === -1) {
         if (len < 10) {
           this.warn = '请设置密码为十位数以上'
+        } else if (val.length > 1000) {
+          this.warn = '已达到密码长度上限制'
         } else {
           this.warn = ''
         }

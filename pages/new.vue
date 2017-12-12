@@ -9,7 +9,7 @@
             <span>创建新主题</span>
           </p>
         </div>
-        <form class="new-post" action="/" method="post" @submit.prevent="onSubmit">
+        <form class="new-form" action="/" method="post" @submit.prevent="onSubmit">
           <p class="new-title">主题标题</p>
           <div class="new-title-input">
             <input
@@ -17,10 +17,13 @@
               placeholder="主题标题">
           </div>
           <p class="new-content">主题正文</p>
-          <div class="new-content-input">
+          <div class="new-content-textarea">
             <textarea
               placeholder="主题正文"
               ></textarea>
+          </div>
+          <div class="new-post">
+            <button type="button">发布主题</button>
           </div>
         </form>
       </div>
@@ -56,7 +59,7 @@ export default {
           font-size 1.4rem
           padding .6rem 1rem
           border-bottom 1px solid #fbfbfb
-      .new-post
+      .new-form
         .new-title, .new-content
           height 3rem
           padding 0 1rem
@@ -70,7 +73,7 @@ export default {
             height 3rem
             border none
             background transparent
-        .new-content-input
+        .new-content-textarea
           padding 1rem
           background #fbfbfb
           textarea
@@ -80,4 +83,13 @@ export default {
             border none
             resize none
             background transparent
+            font-family '微软雅黑'
+        .new-post
+          padding .7rem 1rem
+          button
+            width 6.2rem
+            height 2.3rem
+            border none
+            background #76d067
+            color #fff
 </style>
