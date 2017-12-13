@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import content from './content'
+import user from './user'
 import register from './register'
 import login from './login'
 import forget from './forget'
@@ -12,6 +13,7 @@ import newpost from './newpost'
 const router = Router()
 
 router.use(content)
+router.use(user)
 router.use(register)
 router.use(login)
 router.use(forget)

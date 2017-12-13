@@ -21,6 +21,40 @@ router.post('/newpost', (req, res, next) => {
     let data = JSON.parse(post)
 
     console.log(data)
+
+    let time = new Date()
+    let desc = data.content.slice(0,30)
+
+    connection.escape(data.username)
+
+    let sql_query = "SELECT * FROM user_table WHERE username='" + data.username + "'"
+
+    let sql_insert = 'INSERT INTO post_table (user_id, title, description, content, created_time, last_modified, like_count, view_count, is_top, is_show) VALUES (?,?,?,?,?,?,?,?,?,?)'
+
+    connection.query(sql_query, (err, results, fields) => {
+      console.log(results)
+      console.log(results[0].id)
+      let user_id = results[0].id
+
+      connection.query(sql_insert, [
+        user_id,
+        data.title,
+        desc,
+        data.content,
+        time,
+        time,
+        0,
+        0,
+        0,
+        1
+      ], (err, result, field) => {
+        if (err) throw err
+        res.json({
+          post_status: 1
+        })
+      })
+    })
+
   })
 })
 

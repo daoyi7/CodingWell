@@ -7,9 +7,8 @@
 </template>
 
 <script>
-import Header from '~/pages/Header'
-import Footer from '~/pages/Footer'
-// import Cookies from 'js-cookie'
+import Header from '~/pages/header'
+import Footer from '~/pages/footer'
 
 export default {
   data () {

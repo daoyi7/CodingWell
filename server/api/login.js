@@ -30,9 +30,6 @@ router.post('/login', (req, res, next) => {
 
       if(results.length > 0) {
         bcrypt.compare(data.password, results[0].password, (err, resb) => {
-          console.log(results[0].password)
-          console.log(data.password)
-          console.log(resb)
           if(resb === true) {
             res.send({
               login_status: 1,

@@ -60,7 +60,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import rightBar from '~/pages/RightBar'
+import rightBar from '~/pages/rightbar'
 
 export default {
   data () {

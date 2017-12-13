@@ -33,7 +33,7 @@
 <script>
 import Vue from 'vue'
 import axios from '~/plugins/axios'
-import Alert from '~/pages/Alert'
+import Alert from '~/pages/alert'
 
 Vue.directive('focus', {
   inserted: function (el) {

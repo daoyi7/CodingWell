@@ -43,7 +43,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import RightBar from '~/pages/RightBar'
+import RightBar from '~/pages/rightbar'
 
 export default {
   data () {

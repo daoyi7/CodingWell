@@ -37,7 +37,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import rightBar from '~/pages/RightBar'
+import rightBar from '~/pages/rightbar'
 
 export default {
   data () {
@@ -55,6 +55,8 @@ export default {
         username: this.$store.state.auth_username,
         title: this.title,
         content: this.content
+      }).then((res) => {
+        console.log(res.data)
       })
     }
   }

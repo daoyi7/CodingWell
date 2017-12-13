@@ -3,17 +3,17 @@
   <div class="main-content cdw-wrap">
     <section class="contents-wrap">
       <ul class="contents">
-        <li v-for="(bbs, idx) in bbses" :key="idx" class="content">
+        <li v-for="(content, idx) in contents" :key="idx" class="content">
           <section class="content-item">
             <div class="content-user">
               <a href="#">
-                <img :src="bbs.thumb" :alt="bbs.title">
+                <img :src="content.thumb" :alt="content.title">
               </a>
             </div>
             <div class="content-main">
-              <h2>{{bbs.title}}</h2>
+              <h2>{{content.title}}</h2>
               <div class="content-info">
-                <span class="content-username">{{bbs.source}}</span>
+                <span class="content-username">{{content.source}}</span>
               </div>
             </div>
           </section>
@@ -26,17 +26,17 @@
 </template>
 
 <script>
-import RightBar from '~/pages/RightBar'
+import rightBar from '~/pages/rightbar'
 
 export default {
   props: {
-    bbses: {
+    contents: {
       type: Array,
       default: []
     }
   },
   components: {
-    'cdw-right-bar': RightBar
+    'cdw-right-bar': rightBar
   }
 }
 </script>

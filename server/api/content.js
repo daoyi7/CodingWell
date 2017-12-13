@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   password: ''
 })
 
-connection.query('select * from voice_nba', (err, results, fields) => {
+connection.query('select * from post_table', (err, results, fields) => {
   if (err) {
     console.log(err)
   }
