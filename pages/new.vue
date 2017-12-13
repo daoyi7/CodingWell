@@ -14,12 +14,15 @@
           <div class="new-title-input">
             <input
               type="text"
-              placeholder="主题标题">
+              placeholder="主题标题"
+              v-model="title"
+              >
           </div>
           <p class="new-content">主题正文</p>
           <div class="new-content-textarea">
             <textarea
               placeholder="主题正文"
+              v-model="content"
               ></textarea>
           </div>
           <div class="new-post">
@@ -33,16 +36,26 @@
 </template>
 
 <script>
-// import axios from '~/plugins/axios'
+import axios from '~/plugins/axios'
 import rightBar from '~/pages/RightBar'
 
 export default {
+  data () {
+    return {
+      title: '',
+      content: ''
+    }
+  },
   components: {
     'cdw-right-bar': rightBar
   },
   methods: {
     onSubmit () {
-      console.log(1)
+      axios.post('/api/newpost', {
+        username: this.$store.state.auth_username,
+        title: this.title,
+        content: this.content
+      })
     }
   }
 }
