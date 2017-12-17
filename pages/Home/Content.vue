@@ -13,7 +13,7 @@
             <div class="content-main">
               <h2>{{content.title}}</h2>
               <div class="content-info">
-                <span class="content-username">{{content.source}}</span>
+                <span class="content-username">{{content.user_id | username}}</span>
               </div>
             </div>
           </section>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from '~/plugins/axios'
 import rightBar from '~/pages/rightbar'
 
 export default {
@@ -33,10 +34,27 @@ export default {
     contents: {
       type: Array,
       default: []
+    },
+    users: {
+      type: Array,
+      default: []
     }
   },
   components: {
     'cdw-right-bar': rightBar
+  },
+  // mounted () {
+  //   this.users.map((i) => {
+  //     console.log(i.id)
+  //   })
+  // },
+  filters: {
+    username (id) {
+      axios.get('/api/user/' + id).then((res) => {
+        console.log(res.data.username)
+        return res.data.username
+      })
+    }
   }
 }
 </script>

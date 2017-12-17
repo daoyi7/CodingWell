@@ -1,6 +1,6 @@
 <template>
 <section class="container">
-  <cdw-content :contents="contents"></cdw-content>
+  <cdw-content :contents="contents" :users="users"></cdw-content>
 </section>
 </template>
 
@@ -14,28 +14,14 @@ export default {
       username: ''
     }
   },
-  asyncData ({params, err}) {
-    return axios.get('/api/content').then((res) => {
-      return {
-        contents: res.data
-      }
-    }).catch((err) => {
-      console.error(err)
-    })
-    /**
-    .then((res) => {
-      // for (let i = 0; i < res.data.length; i++) {
-      //   axios.get('/api/user/' + res.data[i].user_id).then((res) => {
-      //     return {
-      //       contentUser: res.data
-      //     }
-      //   }).catch((err) => {
-      //     console.error(err)
-      //   })
-      // }
-      console.log(res.data)
-    })
-    **/
+  async asyncData () {
+    let contents = (await axios.get('/api/content')).data
+    let users = (await axios.get('/api/user')).data
+
+    return {
+      contents: contents,
+      users: users
+    }
   },
   components: {
     'cdw-content': Content
@@ -44,8 +30,6 @@ export default {
     if (this.$store.state.auth_state) {
       this.username = this.$store.state.auth_username
     }
-    console.log(this.contents)
-    console.log(this.contentUser)
   }
 }
 </script>
