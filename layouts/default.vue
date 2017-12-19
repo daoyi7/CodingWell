@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Header from '~/pages/header'
-import Footer from '~/pages/footer'
+import Header from '~/pages/Header'
+import Footer from '~/pages/Footer'
 
 export default {
   data () {

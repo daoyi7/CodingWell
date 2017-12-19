@@ -7,14 +7,13 @@
           <section class="content-item">
             <div class="content-user">
               <a href="#">
-                <img :src="content.thumb" :alt="content.title">
+                <img :src="userAvatar[idx]" :alt="content.title">
               </a>
             </div>
             <div class="content-main">
               <h2>{{content.title}}</h2>
               <div class="content-info">
-                {{username[idx]}}
-                <span class="content-username">{{content.user_id}}</span>
+                <span class="content-username">{{userName[idx]}}</span>
               </div>
             </div>
           </section>
@@ -28,9 +27,15 @@
 
 <script>
 import axios from '~/plugins/axios'
-import rightBar from '~/pages/rightbar'
+import rightBar from '~/pages/RightBar'
 
 export default {
+  data () {
+    return {
+      userName: [],
+      userAvatar: []
+    }
+  },
   props: {
     contents: {
       type: Array,
@@ -44,16 +49,12 @@ export default {
   components: {
     'cdw-right-bar': rightBar
   },
-  computed: {
-    username () {
-      for (var i = 0; i < this.contents.length; i++) {
-        let arr = []
-        axios.get('/api/user/' + this.contents[i].user_id).then((res) => {
-          arr.push(res.data.username)
-        })
-        console.log(arr)
-        return arr
-      }
+  mounted () {
+    for (var i = 0; i < this.contents.length; i++) {
+      axios.get('/api/user/' + this.contents[i].user_id).then((res) => {
+        this.userAvatar.push(res.data.avatar)
+        this.userName.push(res.data.username)
+      })
     }
   }
 }
@@ -96,7 +97,7 @@ export default {
                 border-radius .3rem
                 img
                   width 100%
-                  transform scale(5)
+                  transform scale(3)
             .content-main
               flex-grow 1
               vertical-align middle

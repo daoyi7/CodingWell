@@ -6,7 +6,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import Content from '~/pages/home/content'
+import Content from '~/pages/Home/Content'
 
 export default {
   data () {
