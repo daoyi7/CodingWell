@@ -30,6 +30,11 @@ export default {
     if (this.$store.state.auth_state) {
       this.username = this.$store.state.auth_username
     }
+    this.users.map((u) => {
+      axios.get('/api/user/' + u.id).then((res) => {
+        // console.log(res.data)
+      })
+    })
   }
 }
 </script>
