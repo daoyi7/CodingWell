@@ -9,6 +9,7 @@ import userinfo from './userinfo'
 import settings from './settings'
 import useravatar from './useravatar'
 import newpost from './newpost'
+import userpostlist from './userpostlist'
 
 const router = Router()
 
@@ -21,5 +22,6 @@ router.use(userinfo)
 router.use(settings)
 router.use(useravatar)
 router.use(newpost)
+router.use(userpostlist)
 
 export default router

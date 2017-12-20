@@ -12,7 +12,7 @@
           </div>
           <div class="info-header-main">
             <div class="info-avatar">
-              <img :src="userData.avatar?userData.avatar:vatar">
+              <img :src="userData.avatar">
             </div>
             <div class="info-profile">
               <h2>{{userData.username}}</h2>
@@ -33,7 +33,9 @@
           <span>发布的回复</span>
         </div>
         <div class="posts-lists">
-
+          <ul v-for='(list, idx) in userPostList' :key='idx'>
+            <li>{{list.title}}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -54,15 +56,22 @@ export default {
       website: '',
       birthday: '',
       userinfo: '',
-      avatar: '/uploads/default.png'
+      userData: []
     }
   },
   asyncData ({params, err}) {
-    return axios.get('/api/userinfo/' + params.username)
+    return axios.post('/api/userpostlist/', {
+      username: params.username
+    }).then((res) => {
+      return {
+        userPostList: res.data
+      }
+    })
+  },
+  mounted () {
+    axios.get('/api/userinfo/' + this.$route.params.username)
       .then((res) => {
-        return {
-          userData: res.data
-        }
+        this.userData = res.data
       })
   },
   filters: {
@@ -72,17 +81,6 @@ export default {
   },
   components: {
     'cdw-right-bar': RightBar
-  },
-  methods: {
-    onSubmit () {
-      axios.post('/api/register', {
-        email: this.email,
-        telnumber: this.telnumber,
-        website: this.website,
-        birthday: this.birthday,
-        userinfo: this.userinfo
-      })
-    }
   }
 }
 </script>
@@ -146,6 +144,7 @@ export default {
           line-height 3rem
           color #000
           font-size 1.4rem
+          cursor pointer
           &.tabs-active
             font-weight 700
             border-bottom 1px solid #76d067
