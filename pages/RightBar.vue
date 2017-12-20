@@ -1,6 +1,6 @@
 <template>
   <section class="cdw-right-bar">
-    <div class="box">
+    <div class="box" v-if="isLogin">
       <div class="box-bg">
         <img :src="bg">
       </div>
@@ -29,6 +29,16 @@
         <nuxt-link to="/new"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
       </div>
     </div>
+    <div class="box unlogin" v-if="!isLogin">
+      <div class="unlogin-main">
+        <nuxt-link class="login" to="/auth/login">
+          <span>登录</span>
+        </nuxt-link>
+        <nuxt-link class="register" to="/auth/register">
+          <span>注册</span>
+        </nuxt-link>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -53,6 +63,13 @@ export default {
         .then((res) => {
           this.avatar = res.data.avatar
         })
+    }
+  },
+  computed: {
+    isLogin () {
+      const store = this.$store.state
+
+      return store.auth_state
     }
   }
 }
@@ -136,4 +153,17 @@ export default {
         i
           margin-right .3rem
           font-size .8rem
+    &.unlogin
+      min-height 8rem
+      display flex
+      justify-content center
+      align-items center
+      .unlogin-main
+        .login,.register
+          color #fff
+          font-size 1.4rem
+          text-decoration none
+          padding .3rem .6rem
+          background #76d067
+          margin-right .8rem
 </style>

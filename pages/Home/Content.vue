@@ -40,10 +40,6 @@ export default {
     contents: {
       type: Array,
       default: []
-    },
-    users: {
-      type: Array,
-      default: []
     }
   },
   components: {

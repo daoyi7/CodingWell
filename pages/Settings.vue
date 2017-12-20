@@ -198,4 +198,5 @@ export default {
             img
               width 100%
               transform scale(1.1)
+              cursor pointer
 </style>

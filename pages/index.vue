@@ -1,6 +1,6 @@
 <template>
 <section class="container">
-  <cdw-content :contents="contents" :users="users"></cdw-content>
+  <cdw-content :contents="contents"></cdw-content>
 </section>
 </template>
 
