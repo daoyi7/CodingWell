@@ -28,12 +28,12 @@
         </div>
       </div>
       <div class="user-posts">
-        <div class="tabs" @click='handelOpened'>
-          <span class="posts-menu menu-active">发布的主题</span>
-          <span class="posts-menu">发布的回复</span>
+        <div class="tabs" @click.stop='handelOpened'>
+          <span :class='opened == 0 ? "posts-menu menu-active" : "posts-menu"'>发布的主题</span>
+          <span :class='opened == 1 ? "posts-menu menu-active" : "posts-menu"'>发布的回复</span>
         </div>
         <div class="posts-lists">
-          <ul class="post-not-reply" v-if='opened'>
+          <ul class="post-not-reply" v-show='opened == 0'>
             <li v-for='(list, idx) in userPostList' :key='idx'>
               <nuxt-link to='/'>
                 <h3>{{list.title}}</h3>
@@ -45,7 +45,7 @@
               </div>
             </li>
           </ul>
-          <ul class="post-reply" v-if='!opened'>
+          <ul class="post-reply" v-show='opened == 1'>
             <li>123</li>
           </ul>
         </div>
@@ -69,7 +69,7 @@ export default {
       birthday: '',
       userinfo: '',
       userData: [],
-      opened: true
+      opened: 0
     }
   },
   asyncData ({params, err}) {
@@ -98,14 +98,11 @@ export default {
   },
   methods: {
     handelOpened (e) {
-      let classArr = e.target.getAttribute('class').split(' ')
+      let nodeList = Array.prototype.slice.call(e.target.parentNode.children)
+      let index = nodeList.indexOf(e.target)
+      console.log(index)
 
-      if (classArr.indexOf('menu-active') > 0) {
-        console.log(true)
-        this.opened = true
-      } else {
-        this.opened = false
-      }
+      this.opened = index
     }
   }
 }
