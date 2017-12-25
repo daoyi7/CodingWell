@@ -19,8 +19,6 @@ router.post('/forget', (req, res, next) => {
 
     let data = JSON.parse(post)
 
-    console.log(data.username)
-
     let saltPsw = bcrypt.genSaltSync(10);
     let hashPsw = bcrypt.hashSync(data.new_password, saltPsw)
 
@@ -41,9 +39,6 @@ router.post('/forget', (req, res, next) => {
       }
 
       if(results.length > 0) {
-        console.log("存在")
-        console.log(results)
-
         bcrypt.compare(data.old_password, results[0].password, (err, resb) => {
           if(resb === true) {
             // 密码正确

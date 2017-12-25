@@ -86,7 +86,6 @@ export default {
       .then((res) => {
         this.userData = res.data
       })
-    console.log(this.userPostList)
   },
   filters: {
     createdTime: function (val) {
@@ -100,7 +99,6 @@ export default {
     handelOpened (e) {
       let nodeList = Array.prototype.slice.call(e.target.parentNode.children)
       let index = nodeList.indexOf(e.target)
-      console.log(index)
 
       this.opened = index
     }
@@ -179,8 +177,6 @@ export default {
               color #000
               display block
               padding .2rem .8rem
-              &:hover
-                text-decoration underline
               h3
                 color #000
                 text-decoration none

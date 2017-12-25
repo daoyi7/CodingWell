@@ -31,7 +31,6 @@ router.post('/userpostlist', (req, res, next) => {
       }
 
       let id = result[0].id
-      console.log(id)
 
       let sql_content = "SELECT * FROM post_table WHERE BINARY user_id='" + id + "'"
 
