@@ -28,13 +28,25 @@
         </div>
       </div>
       <div class="user-posts">
-        <div class="tabs">
-          <span class="tabs-active">发布的主题</span>
-          <span>发布的回复</span>
+        <div class="tabs" @click='handelOpened'>
+          <span class="posts-menu menu-active">发布的主题</span>
+          <span class="posts-menu">发布的回复</span>
         </div>
         <div class="posts-lists">
-          <ul v-for='(list, idx) in userPostList' :key='idx'>
-            <li>{{list.title}}</li>
+          <ul class="post-not-reply" v-if='opened'>
+            <li v-for='(list, idx) in userPostList' :key='idx'>
+              <nuxt-link to='/'>
+                <h3>{{list.title}}</h3>
+              </nuxt-link>
+              <div class="more">
+                <p class="node" v-if='list.node'>{{list.node}}</p>
+                <p class="username" v-if='list.username'>{{list.username}}</p>
+                <p class="created" v-if='list.created_time'>{{list.created_time}}</p>
+              </div>
+            </li>
+          </ul>
+          <ul class="post-reply" v-if='!opened'>
+            <li>123</li>
           </ul>
         </div>
       </div>
@@ -56,7 +68,8 @@ export default {
       website: '',
       birthday: '',
       userinfo: '',
-      userData: []
+      userData: [],
+      opened: true
     }
   },
   asyncData ({params, err}) {
@@ -73,6 +86,7 @@ export default {
       .then((res) => {
         this.userData = res.data
       })
+    console.log(this.userPostList)
   },
   filters: {
     createdTime: function (val) {
@@ -81,6 +95,18 @@ export default {
   },
   components: {
     'cdw-right-bar': RightBar
+  },
+  methods: {
+    handelOpened (e) {
+      let classArr = e.target.getAttribute('class').split(' ')
+
+      if (classArr.indexOf('menu-active') > 0) {
+        console.log(true)
+        this.opened = true
+      } else {
+        this.opened = false
+      }
+    }
   }
 }
 </script>
@@ -145,7 +171,32 @@ export default {
           color #000
           font-size 1.4rem
           cursor pointer
-          &.tabs-active
+          &.menu-active
             font-weight 700
-            border-bottom 1px solid #76d067
+            border-bottom 1px solid #000
+      .posts-lists
+        ul
+          li
+            border-bottom 1px solid #fbfbfb
+            a
+              color #000
+              display block
+              padding .2rem .8rem
+              &:hover
+                text-decoration underline
+              h3
+                color #000
+                text-decoration none
+                word-break break-all
+                font-size 1.6rem
+                line-height 2rem
+                text-shadow 0 .1rem 0 #ffff
+                word-wrap break-word
+            .more
+              display flex
+              padding .2rem .8rem
+              p
+               flex 1
+               line-height 2rem
+               color #000
 </style>
