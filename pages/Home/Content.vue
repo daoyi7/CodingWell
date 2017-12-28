@@ -11,7 +11,9 @@
               </a>
             </div>
             <div class="content-main">
-              <h2>{{content.title}}</h2>
+              <p>
+                <nuxt-link class="content-title" :to="{name: 't-id', params: { id: content.id }}">{{content.title}}</nuxt-link>
+              </p>
               <div class="content-info">
                 <span class="content-username">{{userName[idx]}}</span>
               </div>
@@ -97,10 +99,14 @@ export default {
             .content-main
               flex-grow 1
               vertical-align middle
-              h2
+              p
                 padding 0
                 margin 0
                 line-height 3.2rem
                 padding-bottom .5em
+                font-size 1.6rem
+                a
+                  &:hover
+                    text-decoration underline
 
 </style>
