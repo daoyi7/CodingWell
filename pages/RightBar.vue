@@ -1,49 +1,52 @@
 <template>
+<no-ssr>
   <section class="cdw-right-bar">
-    <div class="box" v-if="isLogin">
-      <div class="box-bg">
-        <img :src="bg">
-      </div>
-      <div class="box-user">
-        <nuxt-link to="/settings">
-          <img :src='avatar'>
-        </nuxt-link>
-        <p class="username">{{username}}</p>
-        <p class="usename">@<b>{{username}}</b></p>
-      </div>
-      <div class="box-profile">
-        <nuxt-link to="/">
-          <span class="tab">主题</span>
-          <span class="num">999+</span>
-        </nuxt-link>
-        <nuxt-link to="/">
-          <span class="tab">回复</span>
-          <span class="num">999+</span>
-        </nuxt-link>
-        <nuxt-link to="/">
-          <span class="tab">收藏</span>
-          <span class="num">999+</span>
-        </nuxt-link>
-      </div>
-      <div class="box-new">
-        <nuxt-link to="/new"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
-      </div>
+  <div class="box" v-if="isLogin">
+    <div class="box-bg">
+      <img :src="bg">
     </div>
-    <div class="box unlogin" v-if="!isLogin">
-      <div class="unlogin-main">
-        <nuxt-link class="login" to="/auth/login">
-          <span>登录</span>
-        </nuxt-link>
-        <nuxt-link class="register" to="/auth/register">
-          <span>注册</span>
-        </nuxt-link>
-      </div>
+    <div class="box-user">
+      <nuxt-link to="/settings">
+        <img :src='avatar'>
+      </nuxt-link>
+      <p class="username">{{username}}</p>
+      <p class="usename">@<b>{{username}}</b></p>
     </div>
-  </section>
+    <div class="box-profile">
+      <nuxt-link to="/">
+        <span class="tab">主题</span>
+        <span class="num">999+</span>
+      </nuxt-link>
+      <nuxt-link to="/">
+        <span class="tab">回复</span>
+        <span class="num">999+</span>
+      </nuxt-link>
+      <nuxt-link to="/">
+        <span class="tab">收藏</span>
+        <span class="num">999+</span>
+      </nuxt-link>
+    </div>
+    <div class="box-new">
+      <nuxt-link to="/new"><i class="icon iconfont icon-write"></i>创建新主题</nuxt-link>
+    </div>
+  </div>
+  <div class="box unlogin" v-if="!isLogin">
+    <div class="unlogin-main">
+      <nuxt-link class="login" to="/auth/login">
+        <span>登录</span>
+      </nuxt-link>
+      <nuxt-link class="register" to="/auth/register">
+        <span>注册</span>
+      </nuxt-link>
+    </div>
+  </div>
+</section>
+</no-ssr>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import NoSSR from 'vue-no-ssr'
 
 export default {
   data () {
@@ -53,7 +56,7 @@ export default {
       avatar: '/uploads/default.png'
     }
   },
-  beforeMount () {
+  mounted () {
     const store = this.$store.state
 
     if (store.auth_state) {
@@ -64,6 +67,9 @@ export default {
           this.avatar = res.data.avatar
         })
     }
+  },
+  components: {
+    'no-ssr': NoSSR
   },
   computed: {
     isLogin () {
