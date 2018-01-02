@@ -4,7 +4,7 @@
 
 - 2017.11.27
   - ~~创建项目~~
-  - ~~借用 [v2ex 开放API](https://www.v2ex.com/p/7v9TEc53) 编写首页 list 布局~~
+  - ~~用之前写好的[虎扑新闻API](https://github.com/daoyi7/hupu/tree/master/server)编写首页 list 布局~~
 
 
 - 2017.11.28
